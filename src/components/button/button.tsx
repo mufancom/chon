@@ -22,6 +22,9 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElemDict
 > {
+  // static Icon = (props: IconProps) => React.createElement(_Icon, props);
+  // static Text = (props: TextProps) => React.createElement(_Text, props);
+
   handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
   > = e => {
@@ -38,10 +41,17 @@ export default class Button extends ChonComponent<
     let {
       props: {children},
     } = this;
-    let {Icon, Text} = Button;
 
-    let WrappedIcon = (): JSX.Element => <Icon />;
-    let WrappedText = (): JSX.Element => <Text>{children}</Text>;
+    let WrappedIcon = (props: ChonIconProps): JSX.Element => (
+      <ChonIcon {...props} />
+    );
+    let WrappedText = (
+      props: ChonTextProps & {children: React.ReactNode} & any,
+    ): JSX.Element => (
+      <ChonText {...props}>
+        {children ? children : props.children ? props.children : undefined}
+      </ChonText>
+    );
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,

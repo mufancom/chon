@@ -1,8 +1,13 @@
 import React from 'react';
 
-import allSchemas from '../schema-config';
+import defaultSchemas from '../schema-config';
+import {doubleDepthMerge} from '../utils/index';
 
-// let compConfig = allSchemas;
+let compConfig = defaultSchemas;
+
+export function applyCompConfig(customSchemasConfig: SchemaConfig): void {
+  compConfig = doubleDepthMerge(defaultSchemas, customSchemasConfig);
+}
 
 export interface ChonComponentProps {
   compType?: string;
@@ -18,8 +23,8 @@ export interface ComponentSchemaElemDict {
 }
 
 export abstract class ChonComponent<
-  P extends ChonComponentProps = {},
-  T extends ComponentSchemaElemDict = {},
+  P extends ChonComponentProps,
+  T extends ComponentSchemaElemDict,
   S = {},
   SS = any
 > extends React.Component<P, S, SS> {
@@ -28,10 +33,10 @@ export abstract class ChonComponent<
   constructor(props: P) {
     super(props);
     const {compType} = this.props;
-    const schemas = allSchemas[this.constructor.name];
+    const schemas = compConfig[this.constructor.name];
 
-    if (schemas && compType && schemas[compType]) {
-      this.compSchema = schemas[compType];
+    if (schemas && compType && schemas[compType!]) {
+      this.compSchema = schemas[compType!];
     } else if (schemas.default) {
       this.compSchema = schemas.default;
     } else {
@@ -44,4 +49,10 @@ export abstract class ChonComponent<
 
 export interface ChonSchema<T extends ComponentSchemaElemDict> {
   compose(schemaElem: T): React.ReactChild;
+}
+
+export interface SchemaConfig {
+  [componentName: string]: {
+    [typeName: string]: ChonSchema<ComponentSchemaElemDict>;
+  };
 }
