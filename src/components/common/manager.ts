@@ -1,14 +1,14 @@
-import {ChonSchema, ComponentSchemaElemDict} from '.';
+import {ChonSchema, ComponentSchemaElemDict} from './common';
 
-type CompSchemaMappingType = {
+interface CompSchemaMappingType {
   [compName: string]: Map<string, ChonSchema<ComponentSchemaElemDict>>;
-};
+}
 
-type ConfigType = {
+interface ConfigType {
   [cname: string]: {
     [key: string]: ChonSchema<ComponentSchemaElemDict>;
   };
-};
+}
 
 export class CompSchemaManager {
   componentSchemasMapping: CompSchemaMappingType = {};
@@ -23,13 +23,14 @@ export class CompSchemaManager {
     config: string | ConfigType,
     schemaName?: string,
     schema?: ChonSchema<ComponentSchemaElemDict>,
-  ) {
+  ): void {
     if (typeof config === 'string') {
       if (!schemaName || !schema) {
         throw new Error(
           'Register a schema has to provide a schema name and a schema object',
         );
       }
+
       this.componentSchemasMapping[config].set(schemaName, schema);
     } else {
       for (let cname in config) {

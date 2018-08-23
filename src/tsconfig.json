@@ -1,0 +1,6 @@
+{
+  "extends": "../node_modules/@magicspace/configs/tsconfig-browser.json",
+  "compilerOptions": {
+    "jsx": "react"
+  }
+}

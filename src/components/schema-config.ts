@@ -1,4 +1,4 @@
-import {PrimaryButtonSchema, IconButtonSchema} from './button/schema';
+import {IconButtonSchema, PrimaryButtonSchema} from './button/schema';
 
 const config: {[name: string]: any} = {
   Button: {

@@ -1,12 +1,13 @@
 import * as React from 'react';
-import {ChonText, ChonTextProps} from '../text';
-import {ChonIcon, ChonIconProps} from '../icon';
+
 import {
   ChonComponent,
+  ChonComponentProps,
   ComponentSchemaElem,
   ComponentSchemaElemDict,
-  ChonComponentProps,
 } from '../common/index';
+import {ChonIcon, ChonIconProps} from '../icon';
+import {ChonText, ChonTextProps} from '../text';
 
 export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
   Text: ComponentSchemaElem<ChonTextProps>;
@@ -14,20 +15,18 @@ export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
 }
 
 export interface ButtonProps extends ChonComponentProps {
-  onClick?: () => any;
+  onClick?(): any;
 }
 
 export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElemDict
 > {
-  static Icon = (props: ChonIconProps) => React.createElement(ChonIcon, props);
-  static Text = (props: ChonTextProps) => React.createElement(ChonText, props);
-
   handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
   > = e => {
     const {onClick} = this.props;
+
     if (onClick) {
       (onClick as React.MouseEventHandler<
         HTMLButtonElement | HTMLAnchorElement
@@ -35,20 +34,29 @@ export default class Button extends ChonComponent<
     }
   };
 
-  render() {
+  render(): JSX.Element {
     let {
       props: {children},
     } = this;
     let {Icon, Text} = Button;
 
-    let WrappedIcon = () => <Icon />;
-    let WrappedText = () => <Text>{children}</Text>;
+    let WrappedIcon = (): JSX.Element => <Icon />;
+    let WrappedText = (): JSX.Element => <Text>{children}</Text>;
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,
       Text: WrappedText,
     });
-    console.log();
     return <button onClick={this.handleClick}>{component}</button>;
   }
+
+  static Icon = (
+    props: ChonIconProps,
+  ): React.ComponentElement<ChonIconProps, ChonIcon> =>
+    React.createElement(ChonIcon, props);
+
+  static Text = (
+    props: ChonTextProps,
+  ): React.ComponentElement<ChonTextProps, ChonText> =>
+    React.createElement(ChonText, props);
 }

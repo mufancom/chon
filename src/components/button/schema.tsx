@@ -1,10 +1,12 @@
-import React = require('react');
-import {ButtonComponentSchemaElemDict} from './button';
+import React from 'react';
+
 import {ChonSchema} from '../common/index';
+
+import {ButtonComponentSchemaElemDict} from './button';
 
 export class PrimaryButtonSchema
   implements ChonSchema<ButtonComponentSchemaElemDict> {
-  compose({Text}: ButtonComponentSchemaElemDict) {
+  compose({Text}: ButtonComponentSchemaElemDict): JSX.Element {
     return (
       <>
         <Text />
@@ -14,7 +16,7 @@ export class PrimaryButtonSchema
 }
 
 export class IconButtonSchema {
-  compose({Icon, Text}: ButtonComponentSchemaElemDict) {
+  compose({Icon, Text}: ButtonComponentSchemaElemDict): JSX.Element {
     return (
       <>
         <Icon />
