@@ -1,9 +1,10 @@
 import React = require('react');
 import allSchemas from '../schema-config';
 
+// let compConfig = allSchemas;
+
 export interface ChonComponentProps {
   compType?: string;
-  schema?: {[p: string]: ChonSchema<any>};
 }
 
 export type ComponentSchemaElem<T> = (
@@ -12,7 +13,7 @@ export type ComponentSchemaElem<T> = (
 ) => React.ReactElement<T>;
 
 export interface ComponentSchemaElemDict {
-  [name: string]: ComponentSchemaElem<any>;
+  [name: string]: ComponentSchemaElem<React.Props<{}>>;
 }
 
 export abstract class ChonComponent<
@@ -23,15 +24,15 @@ export abstract class ChonComponent<
 > extends React.Component<P, S, SS> {
   protected compSchema: ChonSchema<T>;
 
-  constructor(props: any) {
+  constructor(props: P) {
     super(props);
     const {compType} = this.props;
     const schemas = allSchemas[this.constructor.name];
 
-    if (schemas && compType && schemas) {
+    if (schemas && compType && schemas[compType]) {
       this.compSchema = schemas[compType];
-    } else if (schemas!.default) {
-      this.compSchema = schemas!.default;
+    } else if (schemas.default) {
+      this.compSchema = schemas.default;
     } else {
       throw new Error(
         `cannot find ${compType} componentSchema in component which not has a default componentSchema}`,
