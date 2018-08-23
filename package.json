@@ -1,0 +1,27 @@
+{
+  "name": "chon",
+  "version": "0.0.0",
+  "repository": "https://github.com/makeflow/chon",
+  "author": "makeflow",
+  "scripts": {
+    "start": "webpack-dev-server --config config/webpack.config.dev.js --color --progress",
+    "build": "webpack --mode production --config src/config/webpack.config.prod.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@magicspace/configs": "^0.1.21",
+    "@types/react": "^16.4.11",
+    "@types/react-dom": "^16.0.7",
+    "awesome-typescript-loader": "^5.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "source-map-loader": "^0.2.4",
+    "styled-components": "^3.4.4",
+    "ts-loader": "^4.5.0",
+    "typescript": "^3.0.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
