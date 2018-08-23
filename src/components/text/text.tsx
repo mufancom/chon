@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export interface TextProps {}
+export interface ChonTextProps {}
 
-export default class Text extends React.Component<TextProps> {
+export class ChonText extends React.Component<ChonTextProps> {
   render() {
     return <span>{this.props.children}</span>;
   }

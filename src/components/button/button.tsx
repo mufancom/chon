@@ -1,6 +1,6 @@
 import * as React from 'react';
-import _Text, {TextProps} from './text';
-import _Icon, {IconProps} from './icon';
+import {ChonText, ChonTextProps} from '../text';
+import {ChonIcon, ChonIconProps} from '../icon';
 import {
   ChonComponent,
   ComponentSchemaElem,
@@ -9,8 +9,8 @@ import {
 } from '../common/index';
 
 export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
-  Text: ComponentSchemaElem<TextProps>;
-  Icon: ComponentSchemaElem<IconProps>;
+  Text: ComponentSchemaElem<ChonTextProps>;
+  Icon: ComponentSchemaElem<ChonIconProps>;
 }
 
 export interface ButtonProps extends ChonComponentProps {
@@ -21,8 +21,8 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElemDict
 > {
-  static Icon = (props: IconProps) => React.createElement(_Icon, props);
-  static Text = (props: TextProps) => React.createElement(_Text, props);
+  static Icon = (props: ChonIconProps) => React.createElement(ChonIcon, props);
+  static Text = (props: ChonTextProps) => React.createElement(ChonText, props);
 
   handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
