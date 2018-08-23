@@ -4,8 +4,8 @@
   "repository": "https://github.com/makeflow/chon",
   "author": "makeflow",
   "scripts": {
-    "start": "webpack-dev-server --config config/webpack.config.dev.js --color --progress",
-    "build": "webpack --mode production --config src/config/webpack.config.prod.js"
+    "start": "webpack-dev-server --config exhibition/config/webpack.config.dev.js --color --progress",
+    "build": "webpack --mode production --config exhibition/config/webpack.config.prod.js"
   },
   "license": "MIT",
   "devDependencies": {
@@ -23,5 +23,10 @@
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.2"
   }
 }
