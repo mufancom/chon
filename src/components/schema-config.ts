@@ -1,6 +1,7 @@
 import {PrimaryButtonSchema, IconButtonSchema} from './button/schema';
+import {SchemaConfig} from './common/index';
 
-const config: {[name: string]: any} = {
+const config: SchemaConfig = {
   Button: {
     default: new PrimaryButtonSchema(),
     icon: new IconButtonSchema(),

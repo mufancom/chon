@@ -1,6 +1,6 @@
 import * as React from 'react';
-import _Text, {TextProps} from './text';
-import _Icon, {IconProps} from './icon';
+import Text, {TextProps} from './text';
+import Icon, {IconProps} from './icon';
 import {
   ChonComponent,
   ComponentSchemaElem,
@@ -21,8 +21,8 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElemDict
 > {
-  static Icon = (props: IconProps) => React.createElement(_Icon, props);
-  static Text = (props: TextProps) => React.createElement(_Text, props);
+  // static Icon = (props: IconProps) => React.createElement(_Icon, props);
+  // static Text = (props: TextProps) => React.createElement(_Text, props);
 
   handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
@@ -39,10 +39,15 @@ export default class Button extends ChonComponent<
     let {
       props: {children},
     } = this;
-    let {Icon, Text} = Button;
 
-    let WrappedIcon = () => <Icon />;
-    let WrappedText = () => <Text>{children}</Text>;
+    let WrappedIcon = (props: IconProps) => <Icon {...props} />;
+    let WrappedText = (
+      props: TextProps & {children: React.ReactNode} & any,
+    ) => (
+      <Text {...props}>
+        {children ? children : props.children ? props.children : null}
+      </Text>
+    );
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,
