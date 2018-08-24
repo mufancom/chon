@@ -1,3 +1,7 @@
+# mac
+.DS_Store
+
+
 # Installable packages
 
 node_modules/
@@ -18,4 +22,5 @@ bld/
 
 /test.*
 
-exhibition/
+dist/
+
