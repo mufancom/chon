@@ -1,3 +1,5 @@
+import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
+import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
 import {
@@ -6,8 +8,8 @@ import {
   ComponentSchemaElem,
   ComponentSchemaElemDict,
 } from '../common/index';
-import {ChonIcon, ChonIconProps} from '../icon';
-import {ChonText, ChonTextProps} from '../text';
+import {ChonIconProps, Icon} from '../icon';
+import {ChonTextProps, Text} from '../text';
 
 export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
   Text: ComponentSchemaElem<ChonTextProps>;
@@ -15,6 +17,7 @@ export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
 }
 
 export interface ButtonProps extends ChonComponentProps {
+  icon?: string | IconDefinition;
   onClick?(): any;
 }
 
@@ -43,14 +46,12 @@ export default class Button extends ChonComponent<
     } = this;
 
     let WrappedIcon = (props: ChonIconProps): JSX.Element => (
-      <ChonIcon {...props} />
+      <Icon {...props} icon={this.props.icon || props.icon || faStroopwafel} />
     );
     let WrappedText = (
       props: ChonTextProps & {children: React.ReactNode} & any,
     ): JSX.Element => (
-      <ChonText {...props}>
-        {children ? children : props.children ? props.children : undefined}
-      </ChonText>
+      <Text {...props}>{children || props.children || undefined}</Text>
     );
 
     const component = this.compSchema.compose({
@@ -60,13 +61,13 @@ export default class Button extends ChonComponent<
     return <button onClick={this.handleClick}>{component}</button>;
   }
 
-  static Icon = (
-    props: ChonIconProps,
-  ): React.ComponentElement<ChonIconProps, ChonIcon> =>
-    React.createElement(ChonIcon, props);
+  // static Icon = (
+  //   props: ChonIconProps,
+  // ): React.ComponentElement<ChonIconProps, Icon> =>
+  //   React.createElement(Icon, props);
 
-  static Text = (
-    props: ChonTextProps,
-  ): React.ComponentElement<ChonTextProps, ChonText> =>
-    React.createElement(ChonText, props);
+  // static Text = (
+  //   props: ChonTextProps,
+  // ): React.ComponentElement<ChonTextProps, Text> =>
+  //   React.createElement(Text, props);
 }

@@ -1,13 +1,19 @@
+import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
+import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-export interface ChonIconProps {}
+import {ChonComponentProps} from '../common';
 
-export class ChonIcon extends React.Component<ChonIconProps> {
-  render(): JSX.Element {
+export interface ChonIconProps extends ChonComponentProps {
+  icon?: string | IconDefinition;
+}
+
+export class Icon extends React.Component<ChonIconProps> {
+  render(): React.ReactNode {
     return (
       <FontAwesomeIcon
-        {...Object.assign({icon: 'stroopwafel'}, this.props as any)}
+        {...Object.assign({icon: faStroopwafel}, this.props as any)}
       />
     );
   }
