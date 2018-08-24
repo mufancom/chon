@@ -49,14 +49,13 @@ export default class Button extends ChonComponent<
     let WrappedText = (
       props: ChonTextProps & {children: React.ReactNode} & any,
     ): JSX.Element => (
-      <Text {...props}>{children || props.children || undefined}</Text>
+      <Text {...props}>{children || props.children}</Text>
     );
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,
       Text: WrappedText,
     });
-    console.log(Consumer.defaultProps);
     return (
       <div>
         <Consumer>
