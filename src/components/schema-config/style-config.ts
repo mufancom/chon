@@ -17,6 +17,16 @@ class LightStyle implements ChonStyle {
       borderRadius: '4px',
     };
   }
+
+  Input(): CSSProperties {
+    return {
+      border: `1px solid ${this.primaryColor}`,
+      padding: '5px 10px',
+      margin: '2px',
+      width: '200px',
+      borderRadius: '4px',
+    };
+  }
 }
 
 const config: StyleSchemaConfig = {

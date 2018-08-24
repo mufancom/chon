@@ -5,7 +5,8 @@ import {
   ChonComponent,
   ComponentSchemaElem,
   ComponentSchemaElemDict,
-} from '../common/index';
+  Consumer,
+} from '../common';
 import {EditText, EditTextProps} from '../edittext';
 import {Icon, IconProps} from '../icon';
 
@@ -27,13 +28,23 @@ export class Input extends ChonComponent<
     let WrappedEditText = (
       props: EditTextProps,
     ): React.ReactElement<EditTextProps> => (
-      <EditText {...{...props, ...this.props}} />
+      <EditText
+        {...props}
+        onChange={this.props.onChange || props.onChange}
+        value={this.props.value || props.value}
+      />
     );
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,
       EditText: WrappedEditText,
     });
-    return <div>{component}</div>;
+    return (
+      <Consumer>
+        {values => {
+          return <div style={values.Input()}>{component}</div>;
+        }}
+      </Consumer>
+    );
   }
 }

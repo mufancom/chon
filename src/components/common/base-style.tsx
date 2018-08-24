@@ -39,6 +39,7 @@ export interface ChonStyle {
   textColor?: Color;
 
   Button(): React.CSSProperties;
+  Input(): React.CSSProperties;
 }
 
 export interface StyleSchemaConfig {

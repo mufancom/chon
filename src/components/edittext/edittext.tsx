@@ -11,5 +11,5 @@ export interface EditTextProps extends ChonComponentProps {
 export function EditText(
   props: EditTextProps,
 ): React.ReactElement<EditTextProps> {
-  return <input {...props} />;
+  return <input style={{border: 0, outline: 0}} {...props} />;
 }
