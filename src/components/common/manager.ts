@@ -1,12 +1,12 @@
-import {ChonSchema, ComponentSchemaElemDict} from './common';
+import {ComponentSchema, ComponentSchemaElemDict} from './base-component';
 
 interface CompSchemaMappingType {
-  [compName: string]: Map<string, ChonSchema<ComponentSchemaElemDict>>;
+  [compName: string]: Map<string, ComponentSchema<ComponentSchemaElemDict>>;
 }
 
 interface ConfigType {
   [cname: string]: {
-    [key: string]: ChonSchema<ComponentSchemaElemDict>;
+    [key: string]: ComponentSchema<ComponentSchemaElemDict>;
   };
 }
 
@@ -16,13 +16,13 @@ export class CompSchemaManager {
   register(
     compName: string,
     schemaName: string,
-    schema: ChonSchema<ComponentSchemaElemDict>,
+    schema: ComponentSchema<ComponentSchemaElemDict>,
   ): void;
   register(config: ConfigType): void;
   register(
     config: string | ConfigType,
     schemaName?: string,
-    schema?: ChonSchema<ComponentSchemaElemDict>,
+    schema?: ComponentSchema<ComponentSchemaElemDict>,
   ): void {
     if (typeof config === 'string') {
       if (!schemaName || !schema) {

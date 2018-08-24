@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import {Consumer} from '../common/base-style';
 import {
   ChonComponent,
   ChonComponentProps,
@@ -22,9 +23,6 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElemDict
 > {
-  // static Icon = (props: IconProps) => React.createElement(_Icon, props);
-  // static Text = (props: TextProps) => React.createElement(_Text, props);
-
   handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
   > = e => {
@@ -57,7 +55,20 @@ export default class Button extends ChonComponent<
       Icon: WrappedIcon,
       Text: WrappedText,
     });
-    return <button onClick={this.handleClick}>{component}</button>;
+    console.log(Consumer.defaultProps);
+    return (
+      <div>
+        <Consumer>
+          {props => {
+            return (
+              <button onClick={this.handleClick} style={props.Button()}>
+                {component}
+              </button>
+            );
+          }}
+        </Consumer>
+      </div>
+    );
   }
 
   static Icon = (

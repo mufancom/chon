@@ -1,2 +1,3 @@
 export * from './manager';
-export * from './common';
+export * from './base-component';
+export * from './base-style';

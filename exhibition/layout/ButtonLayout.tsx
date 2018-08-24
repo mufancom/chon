@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {ChonSchema} from '../../src/components/common/index';
-import {ButtonComponentSchemaElemDict} from '../../src/components/button/button';
+
+import {ButtonComponentSchemaElemDict} from '../../src/components/button';
+import {ComponentSchema} from '../../src/components/common';
 
 export class CustomButtonSchema
-  implements ChonSchema<ButtonComponentSchemaElemDict> {
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
   compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
     return (
       <>

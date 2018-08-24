@@ -1,11 +1,13 @@
 import React from 'react';
 
-import defaultSchemas from '../schema-config';
-import {doubleDepthMerge} from '../utils/index';
+import defaultSchemas from '../schema-config/component-config';
+import {doubleDepthMerge} from '../utils';
 
 let compConfig = defaultSchemas;
 
-export function applyCompConfig(customSchemasConfig: SchemaConfig): void {
+export function applyCompConfig(
+  customSchemasConfig: ComponentSchemaConfig,
+): void {
   compConfig = doubleDepthMerge(defaultSchemas, customSchemasConfig);
 }
 
@@ -28,7 +30,7 @@ export abstract class ChonComponent<
   S = {},
   SS = any
 > extends React.Component<P, S, SS> {
-  protected compSchema: ChonSchema<T>;
+  protected compSchema: ComponentSchema<T>;
 
   constructor(props: P) {
     super(props);
@@ -47,12 +49,12 @@ export abstract class ChonComponent<
   }
 }
 
-export interface ChonSchema<T extends ComponentSchemaElemDict> {
+export interface ComponentSchema<T extends ComponentSchemaElemDict> {
   compose(schemaElem: T): React.ReactChild;
 }
 
-export interface SchemaConfig {
+export interface ComponentSchemaConfig {
   [componentName: string]: {
-    [typeName: string]: ChonSchema<ComponentSchemaElemDict>;
+    [typeName: string]: ComponentSchema<ComponentSchemaElemDict>;
   };
 }
