@@ -25,7 +25,7 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
     }
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <Provider value={this.getStylesFromConfig()}>
         {this.props.children}

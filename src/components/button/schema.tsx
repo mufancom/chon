@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ComponentSchema} from '../common/index';
+import {ComponentSchema} from '../common';
 
 import {ButtonComponentSchemaElemDict} from './button';
 

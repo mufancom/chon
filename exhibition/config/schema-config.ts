@@ -1,4 +1,4 @@
-import {SchemaConfig} from '../../src/components/common';
+import {ComponentSchemaConfig} from '../../src/components/common';
 import {
   CustomButtonSchema,
   IconButtonSchema,
@@ -11,7 +11,7 @@ import {
   WithIconInputSchema,
 } from '../layout/InoutLayout';
 
-const config: SchemaConfig = {
+const config: ComponentSchemaConfig = {
   Button: {
     blue: new CustomButtonSchema(),
     text: new TextButtonSchema(),

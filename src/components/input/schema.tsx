@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import {ComponentSchema} from '../../src/components/common';
-import {InputComponentSchemaElemDict} from '../../src/components/input';
+import {ComponentSchema} from '../common';
+
+import {InputComponentSchemaElemDict} from './input';
 
 export class WithIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose(schemaElem: InputComponentSchemaElemDict): React.ReactChild {
+  compose(schemaElem: InputComponentSchemaElemDict): JSX.Element {
     return (
       <>
         <schemaElem.Icon />
@@ -17,7 +18,7 @@ export class WithIconInputSchema
 
 export class NormalInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose(schemaElem: InputComponentSchemaElemDict): React.ReactChild {
+  compose(schemaElem: InputComponentSchemaElemDict): JSX.Element {
     return (
       <>
         <schemaElem.EditText />
@@ -28,7 +29,7 @@ export class NormalInputSchema
 
 export class RightIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose(schemaElem: InputComponentSchemaElemDict): React.ReactChild {
+  compose(schemaElem: InputComponentSchemaElemDict): JSX.Element {
     return (
       <>
         <schemaElem.EditText />

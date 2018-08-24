@@ -945,7 +945,7 @@ css-what@2.1:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/css-what/download/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
 
-csstype@^2.2.0:
+csstype@^2.2.0, csstype@^2.5.6:
   version "2.5.6"
   resolved "http://registry.npm.taobao.org/csstype/download/csstype-2.5.6.tgz#2ae1db2319642d8b80a668d2d025c6196071e788"
 

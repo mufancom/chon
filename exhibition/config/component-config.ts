@@ -1,9 +1,27 @@
 import {ComponentSchemaConfig} from '../../src/components/common';
-import {CustomButtonSchema} from '../layout/ButtonLayout';
+import {
+  CustomButtonSchema,
+  IconButtonSchema,
+  RightIconSchema,
+  TextButtonSchema,
+} from '../layout/ButtonLayout';
+import {
+  NormalInputSchema,
+  RightIconInputSchema,
+  WithIconInputSchema,
+} from '../layout/InoutLayout';
 
 const config: ComponentSchemaConfig = {
   Button: {
-    custom: new CustomButtonSchema(),
+    blue: new CustomButtonSchema(),
+    text: new TextButtonSchema(),
+    icon: new IconButtonSchema(),
+    rightIcon: new RightIconSchema(),
+  },
+  Input: {
+    normal: new NormalInputSchema(),
+    withIcon: new WithIconInputSchema(),
+    rightIcon: new RightIconInputSchema(),
   },
 };
 
