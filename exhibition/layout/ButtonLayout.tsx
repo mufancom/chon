@@ -14,3 +14,37 @@ export class CustomButtonSchema
     );
   }
 }
+
+export class TextButtonSchema
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
+  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+    return (
+      <>
+        <schemaElem.Text />
+      </>
+    );
+  }
+}
+
+export class IconButtonSchema
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
+  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+    return (
+      <>
+        <schemaElem.Icon />
+      </>
+    );
+  }
+}
+
+export class RightIconSchema
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
+  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+    return (
+      <>
+        <schemaElem.Text />
+        <schemaElem.Icon />
+      </>
+    );
+  }
+}

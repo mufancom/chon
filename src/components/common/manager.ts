@@ -1,9 +1,5 @@
 import {ComponentSchema, ComponentSchemaElemDict} from './base-component';
 
-interface CompSchemaMappingType {
-  [compName: string]: Map<string, ComponentSchema<ComponentSchemaElemDict>>;
-}
-
 interface ConfigType {
   [cname: string]: {
     [key: string]: ComponentSchema<ComponentSchemaElemDict>;
@@ -11,7 +7,7 @@ interface ConfigType {
 }
 
 export class CompSchemaManager {
-  componentSchemasMapping: CompSchemaMappingType = {};
+  componentSchemasMapping: ConfigType = {};
 
   register(
     compName: string,
@@ -31,11 +27,11 @@ export class CompSchemaManager {
         );
       }
 
-      this.componentSchemasMapping[config].set(schemaName, schema);
+      this.componentSchemasMapping[config][schemaName] = schema;
     } else {
       for (let cname in config) {
         for (let key in config[cname]) {
-          this.componentSchemasMapping[cname].set(key, config[cname][key]);
+          this.componentSchemasMapping[cname][key] = config[cname][key];
         }
       }
     }
