@@ -1,10 +1,8 @@
-import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
 import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
 import {
   ChonComponent,
-  ChonComponentProps,
   ComponentSchemaElem,
   ComponentSchemaElemDict,
 } from '../common/index';
@@ -16,8 +14,7 @@ export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
   Icon: ComponentSchemaElem<IconProps>;
 }
 
-export interface ButtonProps extends ChonComponentProps {
-  icon?: string | IconDefinition;
+export interface ButtonProps extends IconProps {
   onClick?(): any;
 }
 
