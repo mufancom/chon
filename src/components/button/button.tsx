@@ -8,12 +8,12 @@ import {
   ComponentSchemaElem,
   ComponentSchemaElemDict,
 } from '../common/index';
-import {ChonIconProps, Icon} from '../icon';
-import {ChonTextProps, Text} from '../text';
+import {Icon, IconProps} from '../icon';
+import {Text, TextProps} from '../text';
 
 export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
-  Text: ComponentSchemaElem<ChonTextProps>;
-  Icon: ComponentSchemaElem<ChonIconProps>;
+  Text: ComponentSchemaElem<TextProps>;
+  Icon: ComponentSchemaElem<IconProps>;
 }
 
 export interface ButtonProps extends ChonComponentProps {
@@ -45,11 +45,11 @@ export default class Button extends ChonComponent<
       props: {children},
     } = this;
 
-    let WrappedIcon = (props: ChonIconProps): JSX.Element => (
+    let WrappedIcon = (props: IconProps): JSX.Element => (
       <Icon {...props} icon={this.props.icon || props.icon || faStroopwafel} />
     );
     let WrappedText = (
-      props: ChonTextProps & {children: React.ReactNode} & any,
+      props: TextProps & {children: React.ReactNode} & any,
     ): JSX.Element => (
       <Text {...props}>{children || props.children || undefined}</Text>
     );

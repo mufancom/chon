@@ -5,11 +5,11 @@ import * as React from 'react';
 
 import {ChonComponentProps} from '../common';
 
-export interface ChonIconProps extends ChonComponentProps {
+export interface IconProps extends ChonComponentProps {
   icon?: string | IconDefinition;
 }
 
-export class Icon extends React.Component<ChonIconProps> {
+export class Icon extends React.Component<IconProps> {
   render(): React.ReactNode {
     return (
       <FontAwesomeIcon
