@@ -1,11 +1,11 @@
 import React from 'react';
 
-import {ChonSchema} from '../common/index';
+import {ComponentSchema} from '../common/index';
 
 import {ButtonComponentSchemaElemDict} from './button';
 
 export class PrimaryButtonSchema
-  implements ChonSchema<ButtonComponentSchemaElemDict> {
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
   compose({Text}: ButtonComponentSchemaElemDict): JSX.Element {
     return (
       <>

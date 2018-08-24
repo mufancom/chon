@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import {ButtonComponentSchemaElemDict} from '../../src/components/button/button';
-import {ChonSchema} from '../../src/components/common/index';
+import {ButtonComponentSchemaElemDict} from '../../src/components/button';
+import {ComponentSchema} from '../../src/components/common';
 
 export class CustomButtonSchema
-  implements ChonSchema<ButtonComponentSchemaElemDict> {
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
   compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
     return (
       <>
@@ -16,7 +16,7 @@ export class CustomButtonSchema
 }
 
 export class TextButtonSchema
-  implements ChonSchema<ButtonComponentSchemaElemDict> {
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
   compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
     return (
       <>
@@ -27,7 +27,7 @@ export class TextButtonSchema
 }
 
 export class IconButtonSchema
-  implements ChonSchema<ButtonComponentSchemaElemDict> {
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
   compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
     return (
       <>
@@ -38,7 +38,7 @@ export class IconButtonSchema
 }
 
 export class RightIconSchema
-  implements ChonSchema<ButtonComponentSchemaElemDict> {
+  implements ComponentSchema<ButtonComponentSchemaElemDict> {
   compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
     return (
       <>

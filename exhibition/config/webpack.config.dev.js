@@ -8,7 +8,7 @@ const PORT = process.env.PORT || '9000';
 const config = {
   mode: 'development',
   entry: {
-    app: './exhibition/index.tsx',
+    app: './exhibition/main.tsx',
   },
   output: {
     path: path.resolve(__dirname, '../bld'),

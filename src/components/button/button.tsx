@@ -1,6 +1,7 @@
 import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
+import {Consumer} from '../common/base-style';
 import {
   ChonComponent,
   ComponentSchemaElem,
@@ -22,9 +23,6 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElemDict
 > {
-  // static Icon = (props: IconProps) => React.createElement(_Icon, props);
-  // static Text = (props: TextProps) => React.createElement(_Text, props);
-
   handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
   > = e => {
@@ -48,14 +46,26 @@ export default class Button extends ChonComponent<
     let WrappedText = (
       props: TextProps & {children: React.ReactNode} & any,
     ): JSX.Element => (
-      <Text {...props}>{children || props.children || undefined}</Text>
+      <Text {...props}>{children || props.children}</Text>
     );
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,
       Text: WrappedText,
     });
-    return <button onClick={this.handleClick}>{component}</button>;
+    return (
+      <div>
+        <Consumer>
+          {props => {
+            return (
+              <button onClick={this.handleClick} style={props.Button()}>
+                {component}
+              </button>
+            );
+          }}
+        </Consumer>
+      </div>
+    );
   }
 
   // static Icon = (
