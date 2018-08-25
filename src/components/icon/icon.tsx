@@ -3,7 +3,7 @@ import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-import {ChonComponentProps} from '../common';
+import {ChonComponentProps} from '../../core';
 
 export interface IconProps extends ChonComponentProps {
   icon?: string | IconDefinition;

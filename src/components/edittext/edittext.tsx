@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {ChonComponentProps} from '../common';
+import {ChonComponentProps} from '../../core';
 
 export interface EditTextProps extends ChonComponentProps {
   value?: string;

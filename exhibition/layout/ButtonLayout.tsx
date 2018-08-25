@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {ButtonComponentSchemaElemDict} from '../../src/components/button';
-import {ComponentSchema} from '../../src/components/common';
+import {ComponentSchema} from '../../src/core';
 
 export class CustomButtonSchema
   implements ComponentSchema<ButtonComponentSchemaElemDict> {

@@ -1,4 +1,4 @@
-import {ComponentSchemaConfig} from '../../src/components/common';
+import {ComponentSchemaConfig} from '../../src/core';
 import {
   CustomButtonSchema,
   IconButtonSchema,

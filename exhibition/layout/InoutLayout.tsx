@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import {ComponentSchema} from '../../src/components/common';
 import {InputComponentSchemaElemDict} from '../../src/components/input';
+import {ComponentSchema} from '../../src/core';
 
 export class WithIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import defaultSchemas from '../schema-config/component-config';
-import {doubleDepthMerge} from '../utils';
+import {doubleDepthMerge} from '../components/utils';
+import defaultSchemas from '../default-theme/component-config';
 
 let compConfig = defaultSchemas;
 

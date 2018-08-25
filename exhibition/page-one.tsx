@@ -2,9 +2,9 @@ import {faHome} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
 import {Button} from '../src/components/button';
-import {StyleProvider} from '../src/components/common';
 import {Icon} from '../src/components/icon';
 import {Input} from '../src/components/input';
+import {StyleProvider} from '../src/core';
 
 interface PageOneState {
   inputValue: string;
@@ -20,10 +20,12 @@ export default class PageOne extends React.Component<{}, PageOneState> {
       <>
         <Button compType="blue">text in button</Button>
         <Button compType="icon">Lalala</Button>
-        <Button compType="text">Hehehe</Button>
-        <Button compType="rightIcon" icon={faHome}>
-          Home
-        </Button>
+        <StyleProvider styleType="blue">
+          <Button compType="text">Hehehe</Button>
+          <Button compType="rightIcon" icon={faHome}>
+            Home
+          </Button>
+        </StyleProvider>
         <Icon icon={faHome} />
         <br />
         {this.state.inputValue}
@@ -37,13 +39,11 @@ export default class PageOne extends React.Component<{}, PageOneState> {
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         />
-        <StyleProvider styleType="black">
-          <Input
-            compType="rightIcon"
-            value={this.state.inputValue}
-            onChange={this.handleInputChange}
-          />
-        </StyleProvider>
+        <Input
+          compType="rightIcon"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+        />
       </>
     );
   }

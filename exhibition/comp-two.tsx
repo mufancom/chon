@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import {Button} from '../src/components/button';
-import {StyleProvider} from '../src/components/common/base-style';
+import {StyleProvider} from '../src/core/base-style';
 
 export default class CompTwo extends React.Component {
   render(): React.ReactChild {

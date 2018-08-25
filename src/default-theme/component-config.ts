@@ -1,10 +1,13 @@
-import {IconButtonSchema, PrimaryButtonSchema} from '../button/schema';
-import {ComponentSchemaConfig} from '../common';
+import {
+  IconButtonSchema,
+  PrimaryButtonSchema,
+} from '../components/button/schema';
 import {
   NormalInputSchema,
   RightIconInputSchema,
   WithIconInputSchema,
-} from '../input/schema';
+} from '../components/input/schema';
+import {ComponentSchemaConfig} from '../core';
 
 const config: ComponentSchemaConfig = {
   Button: {

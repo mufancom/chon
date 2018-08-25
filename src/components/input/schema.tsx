@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {ComponentSchema} from '../common';
+import {ComponentSchema} from '../../core';
 
 import {InputComponentSchemaElemDict} from './input';
 

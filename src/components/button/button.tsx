@@ -1,12 +1,12 @@
 import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
-import {Consumer} from '../common/base-style';
 import {
   ChonComponent,
   ComponentSchemaElem,
   ComponentSchemaElemDict,
-} from '../common/index';
+} from '../../core';
+import {StyleContextConsumer} from '../../core/base-style';
 import {Icon, IconProps} from '../icon';
 import {Text, TextProps} from '../text';
 
@@ -45,9 +45,7 @@ export default class Button extends ChonComponent<
     );
     let WrappedText = (
       props: TextProps & {children: React.ReactNode} & any,
-    ): JSX.Element => (
-      <Text {...props}>{children || props.children}</Text>
-    );
+    ): JSX.Element => <Text {...props}>{children || props.children}</Text>;
 
     const component = this.compSchema.compose({
       Icon: WrappedIcon,
@@ -55,7 +53,7 @@ export default class Button extends ChonComponent<
     });
     return (
       <div>
-        <Consumer>
+        <StyleContextConsumer>
           {props => {
             return (
               <button onClick={this.handleClick} style={props.Button()}>
@@ -63,7 +61,7 @@ export default class Button extends ChonComponent<
               </button>
             );
           }}
-        </Consumer>
+        </StyleContextConsumer>
       </div>
     );
   }

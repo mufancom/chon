@@ -5,8 +5,8 @@ import {
   ChonComponent,
   ComponentSchemaElem,
   ComponentSchemaElemDict,
-  Consumer,
-} from '../common';
+  StyleContextConsumer,
+} from '../../core';
 import {EditText, EditTextProps} from '../edittext';
 import {Icon, IconProps} from '../icon';
 
@@ -40,11 +40,11 @@ export class Input extends ChonComponent<
       EditText: WrappedEditText,
     });
     return (
-      <Consumer>
+      <StyleContextConsumer>
         {values => {
           return <div style={values.Input()}>{component}</div>;
         }}
-      </Consumer>
+      </StyleContextConsumer>
     );
   }
 }

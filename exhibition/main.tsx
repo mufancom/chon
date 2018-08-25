@@ -1,15 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {applyCompConfig} from '../src/components/common';
-import {StyleProvider} from '../src/components/common/base-style';
+import {applyCompConfig, applyDefaultStyleSchema} from '../src/core';
+import {StyleProvider} from '../src/core/base-style';
 
 import CompOne from './comp-one';
 import CompTwo from './comp-two';
 import config from './config/component-config';
-import PageOne from "./page-one";
+import styleSchema from './config/styleschema';
+import PageOne from './page-one';
 
 applyCompConfig(config);
+applyDefaultStyleSchema(styleSchema);
 
 class App extends React.Component {
   render(): React.ReactNode {
@@ -22,7 +24,7 @@ class App extends React.Component {
         <StyleProvider styleType="black">
           <CompTwo />
         </StyleProvider>
-        <PageOne/>
+        <PageOne />
       </>
     );
   }
