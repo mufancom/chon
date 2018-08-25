@@ -1,6 +1,6 @@
+import _ from 'lodash';
 import React from 'react';
 
-import {doubleDepthMerge} from '../components/utils';
 import defaultSchemas from '../default-theme/component-config';
 
 let compConfig = defaultSchemas;
@@ -8,7 +8,7 @@ let compConfig = defaultSchemas;
 export function applyCompConfig(
   customSchemasConfig: ComponentSchemaConfig,
 ): void {
-  compConfig = doubleDepthMerge(defaultSchemas, customSchemasConfig);
+  compConfig = _.merge(defaultSchemas, customSchemasConfig);
 }
 
 export interface ChonComponentProps {
