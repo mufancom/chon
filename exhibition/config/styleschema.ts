@@ -3,10 +3,12 @@ import {ChonStyle} from '../../src/core';
 const green = new ChonStyle({
   primaryColor: '#1D7F5F',
   accentColor: '#1D7F5F',
+  borderRadius: '4px',
 });
 const black = new ChonStyle({
   primaryColor: '#000',
   accentColor: '#000',
+  borderRadius: '50% 30% / 20% 40%',
 });
 const blue = new ChonStyle({
   primaryColor: '#039BE5',

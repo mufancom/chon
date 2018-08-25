@@ -82,6 +82,11 @@ export let {
   Consumer: StyleContextConsumer,
 } = React.createContext<ChonStyle>(defaultSchema);
 
+export const context = {
+  Provider: StyleContextProvider,
+  Consumer: StyleContextConsumer,
+};
+
 interface StyleProviderProps {
   styleType?: string;
 }

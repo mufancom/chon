@@ -29,16 +29,20 @@ export default class PageOne extends React.Component<{}, PageOneState> {
         <Icon icon={faHome} />
         <br />
         {this.state.inputValue}
-        <Input
-          compType="normal"
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-        />
-        <Input
-          compType="withIcon"
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-        />
+        <StyleProvider styleType="blue">
+          <Input
+            compType="normal"
+            value={this.state.inputValue}
+            onChange={this.handleInputChange}
+          />
+        </StyleProvider>
+        <StyleProvider styleType="black">
+          <Input
+            compType="withIcon"
+            value={this.state.inputValue}
+            onChange={this.handleInputChange}
+          />
+        </StyleProvider>
         <Input
           compType="rightIcon"
           value={this.state.inputValue}
