@@ -55,7 +55,6 @@ export class Input extends ChonComponent<
     return (
       <StyleContextConsumer>
         {({schema}) => {
-          console.info(schema);
           return <div style={schema.Input}>{component}</div>;
         }}
       </StyleContextConsumer>
