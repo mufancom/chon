@@ -5445,6 +5445,10 @@ ts-loader@^4.5.0:
     micromatch "^3.1.4"
     semver "^5.0.1"
 
+tslang@^0.1.4:
+  version "0.1.4"
+  resolved "http://registry.npm.taobao.org/tslang/download/tslang-0.1.4.tgz#e70670493d603acbcb8a6bf60e020f9b9af72c28"
+
 tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.9.3"
   resolved "http://registry.npm.taobao.org/tslib/download/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"

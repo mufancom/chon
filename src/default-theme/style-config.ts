@@ -1,19 +1,19 @@
-import {ChonStyle, applyDefaultStyleSchema} from '../core';
+import {ChonStyleSchema, applyDefaultStyleSchema} from '../core';
 
-const green = new ChonStyle({
+const green = new ChonStyleSchema({
   primaryColor: '#1D7F5F',
   accentColor: '#1D7F5F',
 });
-const black = new ChonStyle({
+const black = new ChonStyleSchema({
   primaryColor: '#000',
   accentColor: '#000',
 });
-const blue = new ChonStyle({
+const blue = new ChonStyleSchema({
   primaryColor: '#039BE5',
   accentColor: '#039BE5',
 });
 
-const mapping: Map<string, ChonStyle> = new Map();
+const mapping: Map<string, ChonStyleSchema> = new Map();
 mapping.set('green', green);
 mapping.set('blue', blue);
 mapping.set('black', black);

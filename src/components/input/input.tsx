@@ -4,16 +4,17 @@ import * as React from 'react';
 
 import {
   ChonComponent,
-  ComponentSchemaElem,
-  ComponentSchemaElemDict,
+  ComponentSchemaElement,
+  GeneralComponentSchemaElementDict,
 } from '../../core';
 import {StyleContextConsumer} from '../../core/base-style';
 import {EditText, EditTextProps} from '../edittext';
 import {Icon, IconProps} from '../icon';
 
-export interface InputComponentSchemaElemDict extends ComponentSchemaElemDict {
-  Icon: ComponentSchemaElem<IconProps>;
-  EditText: ComponentSchemaElem<EditTextProps>;
+export interface InputComponentSchemaElemDict
+  extends GeneralComponentSchemaElementDict {
+  Icon: ComponentSchemaElement<IconProps>;
+  EditText: ComponentSchemaElement<EditTextProps>;
 }
 
 export interface InputProps extends EditTextProps, IconProps {}
@@ -46,7 +47,7 @@ export class Input extends ChonComponent<
       />
     );
 
-    const component = this.compSchema.compose({
+    const component = this.schema.compose({
       Icon: WrappedIcon,
       EditText: WrappedEditText,
     });

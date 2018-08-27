@@ -1,5 +1,5 @@
-import Button, {ButtonComponentSchemaElemDict, ButtonProps} from './button';
+import Button, {ButtonComponentSchemaElementDict, ButtonProps} from './button';
 
-export {Button, ButtonProps, ButtonComponentSchemaElemDict};
+export {Button, ButtonProps, ButtonComponentSchemaElementDict};
 export * from './button';
 export * from './schema';

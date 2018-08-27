@@ -1,15 +1,36 @@
-import {IconDefinition} from '@fortawesome/fontawesome-svg-core';
-import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import * as React from 'react';
 
-import {ChonComponentProps} from '../../core';
+import {
+  ChonComponent,
+  ChonComponentProps,
+  ComponentSchemaElement,
+  GeneralComponentSchemaElementDict,
+} from '../../core';
 
-export interface IconProps extends ChonComponentProps {
-  icon?: string | IconDefinition;
+export interface IconProps extends ChonComponentProps, ChonComponentIconProps {}
+
+export interface IconComponentSchemaElementDict {
+  Content: ComponentSchemaElement<IconProps>;
 }
 
-export class Icon extends React.Component<IconProps> {
+type X = {
+  [K in keyof IconComponentSchemaElementDict]: Promise<
+    IconComponentSchemaElementDict[K]
+  >
+};
+
+export interface IconDefinition {
+  name: string;
+}
+
+export interface ChonComponentIconProps {
+  icon: string | IconDefinition;
+}
+
+export class Icon extends ChonComponent<
+  IconProps,
+  IconComponentSchemaElementDict
+> {
   render(): React.ReactNode {
     return (
       <FontAwesomeIcon

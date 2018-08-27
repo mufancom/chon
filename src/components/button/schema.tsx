@@ -2,11 +2,11 @@ import React from 'react';
 
 import {ComponentSchema} from '../../core';
 
-import {ButtonComponentSchemaElemDict} from './button';
+import {ButtonComponentSchemaElementDict} from './button';
 
 export class PrimaryButtonSchema
-  implements ComponentSchema<ButtonComponentSchemaElemDict> {
-  compose({Text}: ButtonComponentSchemaElemDict): JSX.Element {
+  implements ComponentSchema<ButtonComponentSchemaElementDict> {
+  compose({Text}: ButtonComponentSchemaElementDict): JSX.Element {
     return (
       <>
         <Text />
@@ -16,7 +16,7 @@ export class PrimaryButtonSchema
 }
 
 export class IconButtonSchema {
-  compose({Icon, Text}: ButtonComponentSchemaElemDict): JSX.Element {
+  compose({Icon, Text}: ButtonComponentSchemaElementDict): JSX.Element {
     return (
       <>
         <Icon />

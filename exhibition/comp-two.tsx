@@ -7,7 +7,7 @@ export default class CompTwo extends React.Component {
   render(): React.ReactChild {
     return (
       <div style={{display: 'flex'}}>
-        <StyleProvider styleType="green">
+        <StyleProvider schema="green">
           <Button compType="custom">C</Button>
           <Button compType="custom">H</Button>
         </StyleProvider>
