@@ -4,8 +4,8 @@
   "repository": "https://github.com/makeflow/chon",
   "author": "makeflow",
   "scripts": {
-    "start": "webpack-dev-server --config exhibition/config/webpack.config.dev.js --color --progress",
-    "build": "webpack --mode production --config exhibition/config/webpack.config.prod.js"
+    "start": "webpack-dev-server --config example/config/webpack.config.dev.js --color --progress",
+    "build": "webpack --mode production --config example/config/webpack.config.prod.js"
   },
   "license": "MIT",
   "devDependencies": {

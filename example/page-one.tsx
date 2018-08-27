@@ -23,7 +23,9 @@ export default class PageOne extends React.Component<{}, PageOneState> {
         </Button>
         <StyleProvider schema="light">
           <Button compType="text">Hehehe</Button>
-          <Button compType="rightIcon">Home</Button>
+          <StyleProvider schema="reverse">
+            <Button compType="rightIcon">light reverse schema</Button>
+          </StyleProvider>
         </StyleProvider>
         <Icon icon="test" />
         <br />

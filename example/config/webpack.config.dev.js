@@ -8,7 +8,7 @@ const PORT = process.env.PORT || '9000';
 const config = {
   mode: 'development',
   entry: {
-    app: './exhibition/main.tsx',
+    app: './example/main.tsx',
   },
   output: {
     path: path.resolve(__dirname, '../bld'),
@@ -58,7 +58,7 @@ const config = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: 'exhibition/static/index.html',
+      template: 'example/static/index.html',
       title: 'CHON',
       inject: 'body',
     }),
