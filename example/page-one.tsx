@@ -17,14 +17,16 @@ export default class PageOne extends React.Component<{}, PageOneState> {
   render(): React.ReactChild {
     return (
       <>
-        <Button compType="blue">text in button</Button>
-        <Button icon="stroopwafel" compType="icon">
-          Lalala
-        </Button>
-        <StyleProvider schema="lightGreen">
-          <Button compType="text">Hehehe</Button>
-          <StyleProvider schema="blue">
-            <Button compType="rightIcon">light reverse schema</Button>
+        <StyleProvider schema="green">
+          <Button compType="blue">Green Style</Button>
+          <Button icon="stroopwafel" compType="icon">
+            Lalala
+          </Button>
+          <StyleProvider schema="reverse">
+            <Button compType="text">Green Reverse Style</Button>
+            <StyleProvider schema="blue">
+              <Button compType="rightIcon">Blue</Button>
+            </StyleProvider>
           </StyleProvider>
         </StyleProvider>
         <Icon icon="test" />
