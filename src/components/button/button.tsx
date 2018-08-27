@@ -1,29 +1,62 @@
-import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 
 import {
   ChonComponent,
-  ComponentSchemaElem,
-  ComponentSchemaElemDict,
+  ChonComponentProps,
+  ComponentSchemaElement,
+  GeneralComponentSchemaElementDict,
 } from '../../core';
 import {StyleContextConsumer} from '../../core/base-style';
-import {Icon, IconProps} from '../icon';
+import {ChonComponentIconProps, Icon} from '../icon';
 import {Text, TextProps} from '../text';
 
-export interface ButtonComponentSchemaElemDict extends ComponentSchemaElemDict {
-  Text: ComponentSchemaElem<TextProps>;
-  Icon: ComponentSchemaElem<IconProps>;
+export interface ButtonComponentSchemaElementDict
+  extends GeneralComponentSchemaElementDict {
+  Text: ComponentSchemaElement<TextProps>;
+  Icon: ComponentSchemaElement<ChonComponentIconProps>;
 }
 
-export interface ButtonProps extends IconProps {
-  onClick?(): any;
+export interface ButtonProps
+  extends ChonComponentProps,
+    ChonComponentIconProps {
+  onClick?(): void;
 }
 
 export default class Button extends ChonComponent<
   ButtonProps,
-  ButtonComponentSchemaElemDict
+  ButtonComponentSchemaElementDict
 > {
-  handleClick: React.MouseEventHandler<
+  render(): JSX.Element {
+    let {children} = this.props;
+
+    let WrappedIcon = (props: ChonComponentIconProps): JSX.Element => (
+      <Icon {...props} icon={this.props.icon || props.icon || ''} />
+    );
+
+    let WrappedText = (
+      props: TextProps & {children: React.ReactNode} & any,
+    ): JSX.Element => <Text {...props}>{children || props.children}</Text>;
+
+    const component = this.schema.compose({
+      Icon: WrappedIcon,
+      Text: WrappedText,
+    });
+    return (
+      <div>
+        <StyleContextConsumer>
+          {({schema}) => {
+            return (
+              <button onClick={this.handleClick} style={schema.Button}>
+                {component}
+              </button>
+            );
+          }}
+        </StyleContextConsumer>
+      </div>
+    );
+  }
+
+  private handleClick: React.MouseEventHandler<
     HTMLButtonElement | HTMLAnchorElement
   > = e => {
     const {onClick} = this.props;
@@ -34,37 +67,6 @@ export default class Button extends ChonComponent<
       >)(e);
     }
   };
-
-  render(): JSX.Element {
-    let {
-      props: {children},
-    } = this;
-
-    let WrappedIcon = (props: IconProps): JSX.Element => (
-      <Icon {...props} icon={this.props.icon || props.icon || faStroopwafel} />
-    );
-    let WrappedText = (
-      props: TextProps & {children: React.ReactNode} & any,
-    ): JSX.Element => <Text {...props}>{children || props.children}</Text>;
-
-    const component = this.compSchema.compose({
-      Icon: WrappedIcon,
-      Text: WrappedText,
-    });
-    return (
-      <div>
-        <StyleContextConsumer>
-          {props => {
-            return (
-              <button onClick={this.handleClick} style={props.Button()}>
-                {component}
-              </button>
-            );
-          }}
-        </StyleContextConsumer>
-      </div>
-    );
-  }
 
   // static Icon = (
   //   props: ChonIconProps,

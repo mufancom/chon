@@ -1,22 +1,22 @@
-import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import _ from 'lodash';
 import * as React from 'react';
 
 import {
   ChonComponent,
-  ComponentSchemaElem,
-  ComponentSchemaElemDict,
+  ComponentSchemaElement,
+  GeneralComponentSchemaElementDict,
 } from '../../core';
 import {StyleContextConsumer} from '../../core/base-style';
 import {EditText, EditTextProps} from '../edittext';
-import {Icon, IconProps} from '../icon';
+import {ChonComponentIconProps, Icon} from '../icon';
 
-export interface InputComponentSchemaElemDict extends ComponentSchemaElemDict {
-  Icon: ComponentSchemaElem<IconProps>;
-  EditText: ComponentSchemaElem<EditTextProps>;
+export interface InputComponentSchemaElemDict
+  extends GeneralComponentSchemaElementDict {
+  Icon: ComponentSchemaElement<ChonComponentIconProps>;
+  EditText: ComponentSchemaElement<EditTextProps>;
 }
 
-export interface InputProps extends EditTextProps, IconProps {}
+export interface InputProps extends EditTextProps, ChonComponentIconProps {}
 
 export class Input extends ChonComponent<
   InputProps,
@@ -33,8 +33,10 @@ export class Input extends ChonComponent<
   // }
 
   render(): React.ReactNode {
-    let WrappedIcon = (props: IconProps): React.ReactElement<IconProps> => (
-      <Icon {...props} icon={this.props.icon || props.icon || faStroopwafel} />
+    let WrappedIcon = (
+      props: ChonComponentIconProps,
+    ): React.ReactElement<ChonComponentIconProps> => (
+      <Icon {...props} icon={this.props.icon || props.icon || ''} />
     );
     let WrappedEditText = (
       props: EditTextProps,
@@ -46,15 +48,14 @@ export class Input extends ChonComponent<
       />
     );
 
-    const component = this.compSchema.compose({
+    const component = this.schema.compose({
       Icon: WrappedIcon,
       EditText: WrappedEditText,
     });
     return (
       <StyleContextConsumer>
-        {values => {
-          console.info(values);
-          return <div style={values.Input()}>{component}</div>;
+        {({schema}) => {
+          return <div style={schema.Input}>{component}</div>;
         }}
       </StyleContextConsumer>
     );

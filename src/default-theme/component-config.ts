@@ -2,6 +2,7 @@ import {
   IconButtonSchema,
   PrimaryButtonSchema,
 } from '../components/button/schema';
+import {SingleIconSchema} from '../components/icon/schema';
 import {
   NormalInputSchema,
   RightIconInputSchema,
@@ -18,6 +19,9 @@ const config: ComponentSchemaConfig = {
     default: new NormalInputSchema(),
     withIcon: new WithIconInputSchema(),
     rightIcon: new RightIconInputSchema(),
+  },
+  Icon: {
+    default: new SingleIconSchema(),
   },
 };
 

@@ -1,8 +1,11 @@
-import {ComponentSchema, ComponentSchemaElemDict} from './base-component';
+import {
+  ComponentSchema,
+  GeneralComponentSchemaElementDict,
+} from './base-component';
 
 interface ConfigType {
   [cname: string]: {
-    [key: string]: ComponentSchema<ComponentSchemaElemDict>;
+    [key: string]: ComponentSchema<GeneralComponentSchemaElementDict>;
   };
 }
 
@@ -12,13 +15,13 @@ export class CompSchemaManager {
   register(
     compName: string,
     schemaName: string,
-    schema: ComponentSchema<ComponentSchemaElemDict>,
+    schema: ComponentSchema<GeneralComponentSchemaElementDict>,
   ): void;
   register(config: ConfigType): void;
   register(
     config: string | ConfigType,
     schemaName?: string,
-    schema?: ComponentSchema<ComponentSchemaElemDict>,
+    schema?: ComponentSchema<GeneralComponentSchemaElementDict>,
   ): void {
     if (typeof config === 'string') {
       if (!schemaName || !schema) {

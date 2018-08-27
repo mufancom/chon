@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import {ButtonComponentSchemaElemDict} from '../../src/components/button';
+import {ButtonComponentSchemaElementDict} from '../../src/components/button';
 import {ComponentSchema} from '../../src/core';
 
 export class CustomButtonSchema
-  implements ComponentSchema<ButtonComponentSchemaElemDict> {
-  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+  implements ComponentSchema<ButtonComponentSchemaElementDict> {
+  compose(schemaElem: ButtonComponentSchemaElementDict): React.ReactChild {
     return (
       <>
         <schemaElem.Icon />
@@ -16,8 +16,8 @@ export class CustomButtonSchema
 }
 
 export class TextButtonSchema
-  implements ComponentSchema<ButtonComponentSchemaElemDict> {
-  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+  implements ComponentSchema<ButtonComponentSchemaElementDict> {
+  compose(schemaElem: ButtonComponentSchemaElementDict): React.ReactChild {
     return (
       <>
         <schemaElem.Text />
@@ -27,19 +27,20 @@ export class TextButtonSchema
 }
 
 export class IconButtonSchema
-  implements ComponentSchema<ButtonComponentSchemaElemDict> {
-  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+  implements ComponentSchema<ButtonComponentSchemaElementDict> {
+  compose(schemaElem: ButtonComponentSchemaElementDict): React.ReactChild {
     return (
       <>
         <schemaElem.Icon />
+        <schemaElem.Text />
       </>
     );
   }
 }
 
 export class RightIconSchema
-  implements ComponentSchema<ButtonComponentSchemaElemDict> {
-  compose(schemaElem: ButtonComponentSchemaElemDict): React.ReactChild {
+  implements ComponentSchema<ButtonComponentSchemaElementDict> {
+  compose(schemaElem: ButtonComponentSchemaElementDict): React.ReactChild {
     return (
       <>
         <schemaElem.Text />

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React from 'react';
+import React, {Component, ReactNode} from 'react';
 
 import defaultSchemas from '../default-theme/component-config';
 
@@ -15,46 +15,55 @@ export interface ChonComponentProps {
   compType?: string;
 }
 
-export type ComponentSchemaElem<T> = (
+export type ComponentSchemaElement<T> = (
   props: T,
   children?: React.ReactNode[],
 ) => React.ReactElement<T>;
 
-export interface ComponentSchemaElemDict {
-  [name: string]: ComponentSchemaElem<ChonComponentProps>;
+export interface GeneralComponentSchemaElementDict {
+  [name: string]: ComponentSchemaElement<ChonComponentProps>;
 }
 
 export abstract class ChonComponent<
-  P extends ChonComponentProps,
-  T extends ComponentSchemaElemDict,
-  S = {},
-  SS = any
-> extends React.Component<P, S, SS> {
-  protected compSchema: ComponentSchema<T>;
+  TProps extends ChonComponentProps,
+  TSchemaElementDict extends GeneralComponentSchemaElementDict,
+  TState = {},
+  TSnapshot = unknown
+> extends Component<TProps, TState, TSnapshot> {
+  protected schema: ComponentSchema<TSchemaElementDict>;
 
-  constructor(props: P) {
+  constructor(props: TProps) {
     super(props);
     const {compType} = this.props;
     const schemas = compConfig[this.constructor.name];
 
-    if (schemas && compType && schemas[compType!]) {
-      this.compSchema = schemas[compType!];
-    } else if (schemas.default) {
-      this.compSchema = schemas.default;
+    if (schemas) {
+      if (compType && schemas[compType!]) {
+        this.schema = schemas[compType!];
+      } else if (schemas.default) {
+        this.schema = schemas.default;
+      } else {
+        throw new Error(
+          `cannot find ${compType} componentSchema in component}`,
+        );
+      }
     } else {
       throw new Error(
-        `cannot find ${compType} componentSchema in component which not has a default componentSchema}`,
+        `${this.constructor.name} not has a default componentSchema`,
       );
     }
   }
 }
 
-export interface ComponentSchema<T extends ComponentSchemaElemDict> {
-  compose(schemaElem: T): React.ReactChild;
+export interface ComponentSchema<
+  TElementDict,
+  T extends ChonComponentProps = ChonComponentProps
+> {
+  compose(elementDict: TElementDict, props?: T): ReactNode;
 }
 
 export interface ComponentSchemaConfig {
   [componentName: string]: {
-    [typeName: string]: ComponentSchema<ComponentSchemaElemDict>;
+    [typeName: string]: ComponentSchema<GeneralComponentSchemaElementDict>;
   };
 }
