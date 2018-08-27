@@ -55,7 +55,16 @@ export class Input extends ChonComponent<
     return (
       <StyleContextConsumer>
         {({schema}) => {
-          return <div style={schema.Input}>{component}</div>;
+          return (
+            <div
+              style={{
+                ...schema.Input,
+                ...{display: 'flex', flexDirection: 'row'},
+              }}
+            >
+              {component}
+            </div>
+          );
         }}
       </StyleContextConsumer>
     );

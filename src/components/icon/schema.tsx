@@ -4,7 +4,7 @@ import React from 'react';
 
 import {ComponentSchema} from '../../core';
 
-import {IconComponentSchemaElementDict, IconProps} from '.';
+import {IconComponentSchemaElementDict, IconProps} from './icon';
 
 export class SingleIconSchema
   implements ComponentSchema<IconComponentSchemaElementDict> {
