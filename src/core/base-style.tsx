@@ -79,8 +79,6 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
     return (
       <StyleContextConsumer>
         {context => {
-          console.log({context});
-
           if (!context) {
             context = this.buildContext();
           }
@@ -88,20 +86,12 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
           let {schema, schemas: schemaDict, mapping, mappingConfig} = context;
 
           let {schema: schemaName, children} = this.props;
-          console.log({schemaName});
 
           if (schemaName) {
             schemaName = mapping[schemaName];
             schema = schemaDict[schemaName];
             mapping = {...mapping, ...mappingConfig[schemaName]};
           }
-
-          console.log({
-            schema,
-            schemas: schemaDict,
-            mapping,
-            mappingConfig,
-          });
 
           return (
             <StyleContextProvider
