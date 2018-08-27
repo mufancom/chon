@@ -26,7 +26,7 @@ export interface GeneralComponentSchemaElementDict {
 
 export abstract class ChonComponent<
   TProps extends ChonComponentProps,
-  TSchemaElementDict,
+  TSchemaElementDict extends GeneralComponentSchemaElementDict,
   TState = {},
   TSnapshot = unknown
 > extends Component<TProps, TState, TSnapshot> {

@@ -2,8 +2,12 @@ import _ from 'lodash';
 import * as React from 'react';
 import {Dict} from 'tslang';
 
+import {Color} from 'csstype';
+
 export abstract class ChonStyleSchema {
   currentMapping: Map<string, ChonStyleSchema> = new Map();
+
+  constructor(public primaryColor: Color) {}
 
   setMapping(mapping: Map<string, ChonStyleSchema>): void {
     this.currentMapping = mapping;
@@ -27,40 +31,8 @@ export abstract class ChonStyleSchema {
     return schema;
   }
 
-  getLPadding(): string {
-    return this.opts.lPadding || '15px 20px';
-  }
-
-  getMPadding(): string {
-    return this.opts.mPadding || '10px 16px';
-  }
-
-  getSPadding(): string {
-    return this.opts.sPadding || '5px 10px';
-  }
-
-  getBorderRadius(): string {
-    return this.opts.borderRadius || '0';
-  }
-
-  Button(): React.CSSProperties {
-    return {
-      backgroundColor: this.opts.primaryColor,
-      color: '#FFF',
-      padding: this.getMPadding(),
-      borderRadius: this.getBorderRadius(),
-    };
-  }
-
-  Input(): React.CSSProperties {
-    return {
-      border: `1px solid ${this.opts.primaryColor}`,
-      borderRadius: this.getBorderRadius(),
-      padding: this.getSPadding(),
-      margin: '2px',
-      width: '190px',
-    };
-  }
+  abstract get Button(): React.CSSProperties;
+  abstract get Input(): React.CSSProperties;
 }
 
 interface ChonStyleSchemaContext {
@@ -75,22 +47,12 @@ export let {
   Consumer: StyleContextConsumer,
 } = React.createContext<ChonStyleSchemaContext>(undefined!);
 
-export const context = {
-  Provider: StyleContextProvider,
-  Consumer: StyleContextConsumer,
-};
-
 interface StyleProviderProps {
   config?: ChonStyleSchemaConfig;
   schema?: string;
 }
 
 export class StyleProvider extends React.Component<StyleProviderProps> {
-  getStylesFromConfig(): ChonStyleSchema {
-    // const {styleType} = this.props;
-    return defaultSchema;
-  }
-
   render(): React.ReactNode {
     // {default: 'default', light：'light', dark: 'dark'}
 
@@ -162,14 +124,6 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
       mappingConfig: config.mapping,
     };
   }
-}
-
-export function applyDefaultStyleSchema(styleSchema: ChonStyleSchema): void {
-  defaultSchema = styleSchema;
-
-  let {Provider, Consumer} = React.createContext(styleSchema);
-  StyleContextProvider = Provider;
-  StyleContextConsumer = Consumer;
 }
 
 export interface ChonStyleSchemaConfig<

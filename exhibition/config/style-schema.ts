@@ -1,41 +1,31 @@
 import {ChonStyleSchema} from '../../src/core';
 
-const green = new ChonStyleSchema({
-  primaryColor: '#1D7F5F',
-  accentColor: '#1D7F5F',
-  borderRadius: '4px',
-});
-const black = new ChonStyleSchema({
-  primaryColor: '#000',
-  accentColor: '#000',
-  borderRadius: '50% 30% / 20% 40%',
-});
-const blue = new ChonStyleSchema({
-  primaryColor: '#039BE5',
-  accentColor: '#039BE5',
-});
+export class ThemeColorStyleSchema extends ChonStyleSchema {
+  get Button(): React.CSSProperties {
+    return {
+      padding: '10px 16px',
+      background: this.primaryColor,
+    };
+  }
 
-export class ThemeColorStyleSchema extends ChonStyleSchema {}
+  get Input(): React.CSSProperties {
+    return {
+      padding: '10px 16px',
+    };
+  }
+}
 
-const mapping: Map<string, ChonStyleSchema> = new Map();
-mapping.set('green', green);
-mapping.set('blue', blue);
-mapping.set('black', black);
+const green = new ThemeColorStyleSchema('#1D7F5F');
+const black = new ThemeColorStyleSchema('#000');
+const blue = new ThemeColorStyleSchema('#039BE5');
 
-green.setMapping(new Map(mapping));
-blue.setMapping(new Map(mapping));
-black.setMapping(new Map(mapping));
-
-green.addMapping('reverse', blue);
-blue.addMapping('reverse', green);
-
-export const config = {
-  default: defaultSchema,
+const config = {
+  default: green,
 
   schemas: {
-    default: defaultSchema,
-    light: lightSchema,
-    dark: darkSchema,
+    default: green,
+    light: blue,
+    dark: black,
   },
 
   mapping: {
@@ -65,4 +55,4 @@ export const config = {
   // },
 };
 
-export default green;
+export default config;

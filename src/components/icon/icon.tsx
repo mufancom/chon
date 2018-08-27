@@ -7,24 +7,27 @@ import {
   GeneralComponentSchemaElementDict,
 } from '../../core';
 
-export interface IconProps extends ChonComponentProps, ChonComponentIconProps {}
-
-export interface IconComponentSchemaElementDict {
-  Content: ComponentSchemaElement<IconProps>;
+export interface IconProps extends ChonComponentIconProps {
+  icon: string | IconDefinition;
 }
 
-type X = {
-  [K in keyof IconComponentSchemaElementDict]: Promise<
-    IconComponentSchemaElementDict[K]
-  >
-};
+export interface IconComponentSchemaElementDict
+  extends GeneralComponentSchemaElementDict {
+  Content: ComponentSchemaElement<ChonComponentIconProps>;
+}
+
+// type X = {
+//   [K in keyof IconComponentSchemaElementDict]: Promise<
+//     IconComponentSchemaElementDict[K]
+//   >
+// };
 
 export interface IconDefinition {
   name: string;
 }
 
-export interface ChonComponentIconProps {
-  icon: string | IconDefinition;
+export interface ChonComponentIconProps extends ChonComponentProps {
+  icon?: string | IconDefinition;
 }
 
 export class Icon extends ChonComponent<
@@ -32,10 +35,7 @@ export class Icon extends ChonComponent<
   IconComponentSchemaElementDict
 > {
   render(): React.ReactNode {
-    return (
-      <FontAwesomeIcon
-        {...Object.assign({icon: faStroopwafel}, this.props as any)}
-      />
-    );
+    let Content = (): JSX.Element => <span />;
+    return this.schema.compose({Content});
   }
 }
