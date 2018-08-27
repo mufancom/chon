@@ -8,12 +8,12 @@ import {
 } from '../../core';
 
 export interface IconProps extends ChonComponentIconProps {
-  icon: string | IconDefinition;
+  icon: string;
 }
 
 export interface IconComponentSchemaElementDict
   extends GeneralComponentSchemaElementDict {
-  Content: ComponentSchemaElement<ChonComponentIconProps>;
+  Content: ComponentSchemaElement<any>;
 }
 
 // type X = {
@@ -22,12 +22,8 @@ export interface IconComponentSchemaElementDict
 //   >
 // };
 
-export interface IconDefinition {
-  name: string;
-}
-
 export interface ChonComponentIconProps extends ChonComponentProps {
-  icon?: string | IconDefinition;
+  icon?: string;
 }
 
 export class Icon extends ChonComponent<
@@ -35,7 +31,12 @@ export class Icon extends ChonComponent<
   IconComponentSchemaElementDict
 > {
   render(): React.ReactNode {
-    let Content = (): JSX.Element => <span />;
-    return this.schema.compose({Content});
+    let Content = (props: {children: React.ReactNode} & any): JSX.Element => (
+      <div>{props.children}</div>
+    );
+    return this.schema.compose(
+      {Content},
+      this.props,
+    );
   }
 }

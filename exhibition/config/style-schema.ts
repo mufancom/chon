@@ -36,23 +36,6 @@ const config = {
       reverse: 'light',
     },
   },
-
-  // mapping: {
-  //   default: {
-  //     green: greenSchema,
-  //     black: blackSchema,
-  //     blue: blueSchema,
-  //   },
-  //   green: {
-  //     reverse: blueSchema,
-  //   },
-  //   black: {
-  //     blue: greenSchema,
-  //   },
-  //   blue: {
-  //     reverse: blackSchema,
-  //   },
-  // },
 };
 
 export default config;

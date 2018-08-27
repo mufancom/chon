@@ -37,20 +37,29 @@ export abstract class ChonComponent<
     const {compType} = this.props;
     const schemas = compConfig[this.constructor.name];
 
-    if (schemas && compType && schemas[compType!]) {
-      this.schema = schemas[compType!];
-    } else if (schemas.default) {
-      this.schema = schemas.default;
+    if (schemas) {
+      if (compType && schemas[compType!]) {
+        this.schema = schemas[compType!];
+      } else if (schemas.default) {
+        this.schema = schemas.default;
+      } else {
+        throw new Error(
+          `cannot find ${compType} componentSchema in component}`,
+        );
+      }
     } else {
       throw new Error(
-        `cannot find ${compType} componentSchema in component which not has a default componentSchema}`,
+        `${this.constructor.name} not has a default componentSchema`,
       );
     }
   }
 }
 
-export interface ComponentSchema<TElementDict> {
-  compose(elementDict: TElementDict): ReactNode;
+export interface ComponentSchema<
+  TElementDict,
+  T extends ChonComponentProps = ChonComponentProps
+> {
+  compose(elementDict: TElementDict, props?: T): ReactNode;
 }
 
 export interface ComponentSchemaConfig {

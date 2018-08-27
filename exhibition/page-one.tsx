@@ -18,22 +18,24 @@ export default class PageOne extends React.Component<{}, PageOneState> {
     return (
       <>
         <Button compType="blue">text in button</Button>
-        <Button compType="icon">Lalala</Button>
-        <StyleProvider schema="blue">
+        <Button icon="stroopwafel" compType="icon">
+          Lalala
+        </Button>
+        <StyleProvider schema="light">
           <Button compType="text">Hehehe</Button>
           <Button compType="rightIcon">Home</Button>
         </StyleProvider>
         <Icon icon="test" />
         <br />
         {this.state.inputValue}
-        <StyleProvider schema="blue">
+        <StyleProvider schema="light">
           <Input
             compType="normal"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
           />
         </StyleProvider>
-        <StyleProvider schema="black">
+        <StyleProvider schema="light">
           <Input
             compType="withIcon"
             value={this.state.inputValue}
@@ -45,6 +47,7 @@ export default class PageOne extends React.Component<{}, PageOneState> {
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         />
+        <Icon icon="stroopwafel" />
       </>
     );
   }

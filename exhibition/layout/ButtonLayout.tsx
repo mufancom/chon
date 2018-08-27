@@ -32,6 +32,7 @@ export class IconButtonSchema
     return (
       <>
         <schemaElem.Icon />
+        <schemaElem.Text />
       </>
     );
   }

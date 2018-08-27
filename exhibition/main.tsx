@@ -1,3 +1,5 @@
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faStroopwafel} from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -12,6 +14,8 @@ import PageOne from './page-one';
 
 applyCompConfig(componentConfig);
 
+library.add(faStroopwafel);
+
 class App extends React.Component {
   render(): React.ReactNode {
     return (
@@ -19,11 +23,11 @@ class App extends React.Component {
         <h1>C H O N</h1>
         <StyleProvider config={styleConfig}>
           <CompOne />
+          <PageOne />
         </StyleProvider>
         {/* <StyleProvider config={styleConfig}>
           <CompTwo />
         </StyleProvider> */}
-        <PageOne />
       </>
     );
   }
