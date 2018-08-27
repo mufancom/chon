@@ -11,6 +11,7 @@ export class ThemeColorStyleSchema extends ChonStyleSchema {
   get Input(): React.CSSProperties {
     return {
       padding: '10px 16px',
+      border: '1px solid',
     };
   }
 }
