@@ -21,23 +21,23 @@ export default class PageOne extends React.Component<{}, PageOneState> {
         <Button icon="stroopwafel" compType="icon">
           Lalala
         </Button>
-        <StyleProvider schema="light">
+        <StyleProvider schema="lightGreen">
           <Button compType="text">Hehehe</Button>
-          <StyleProvider schema="reverse">
+          <StyleProvider schema="blue">
             <Button compType="rightIcon">light reverse schema</Button>
           </StyleProvider>
         </StyleProvider>
         <Icon icon="test" />
         <br />
         {this.state.inputValue}
-        <StyleProvider schema="light">
+        <StyleProvider schema="blue">
           <Input
             compType="normal"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
           />
         </StyleProvider>
-        <StyleProvider schema="light">
+        <StyleProvider schema="black">
           <Input
             compType="withIcon"
             value={this.state.inputValue}

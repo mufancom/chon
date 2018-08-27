@@ -7,7 +7,7 @@ export default class CompOne extends React.Component {
   render(): React.ReactChild {
     return (
       <div style={{display: 'flex'}}>
-        <StyleProvider schema="light">
+        <StyleProvider schema="lightGreen">
           <Button compType="custom">C</Button>
           <Button compType="custom">H</Button>
         </StyleProvider>

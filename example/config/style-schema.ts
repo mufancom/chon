@@ -1,6 +1,14 @@
+import {Color} from 'csstype';
+
 import {ChonStyleSchema} from '../../src/core';
+import {DefaultStyleSchema} from '../../src/default-theme/style';
 
 export class ThemeColorStyleSchema extends ChonStyleSchema {
+  constructor(private primaryColor: Color) {
+    super();
+    this.primaryColor = primaryColor;
+  }
+
   get Button(): React.CSSProperties {
     return {
       padding: '10px 16px',
@@ -16,25 +24,44 @@ export class ThemeColorStyleSchema extends ChonStyleSchema {
   }
 }
 
-const green = new ThemeColorStyleSchema('#1D7F5F');
 const black = new ThemeColorStyleSchema('#000');
-const blue = new ThemeColorStyleSchema('#039BE5');
+const green = new DefaultStyleSchema({
+  primaryColor: '#1D7F5F',
+  accentColor: '#1D7F5F',
+  baseVerticalPadding: 10,
+  baseHorizontalPadding: 16,
+});
+const lightGreen = new DefaultStyleSchema({
+  primaryColor: '#CCFF90',
+  accentColor: '#CCFF90',
+  baseVerticalPadding: 10,
+  baseHorizontalPadding: 16,
+});
+const blue = new DefaultStyleSchema({
+  primaryColor: '#4285F4',
+  accentColor: '#4285F4',
+  baseVerticalPadding: 10,
+  baseHorizontalPadding: 16,
+  borderRadius: '50% 10% / 20% 20%',
+});
 
 const config = {
   default: green,
 
   schemas: {
     default: green,
-    light: blue,
-    dark: black,
+    green,
+    lightGreen,
+    blue,
+    black,
   },
 
   mapping: {
-    light: {
-      reverse: 'dark',
+    green: {
+      reverse: 'lightGreen',
     },
-    dark: {
-      reverse: 'light',
+    lightGreen: {
+      reverse: 'green',
     },
   },
 };

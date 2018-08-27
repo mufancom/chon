@@ -2,35 +2,7 @@ import _ from 'lodash';
 import * as React from 'react';
 import {Dict} from 'tslang';
 
-import {Color} from 'csstype';
-
 export abstract class ChonStyleSchema {
-  currentMapping: Map<string, ChonStyleSchema> = new Map();
-
-  constructor(public primaryColor: Color) {}
-
-  setMapping(mapping: Map<string, ChonStyleSchema>): void {
-    this.currentMapping = mapping;
-  }
-
-  addMapping(name: string, schema: ChonStyleSchema): void {
-    this.currentMapping.set(name, schema);
-  }
-
-  removeMapping(name: string): void {
-    this.currentMapping.delete(name);
-  }
-
-  getSchema(name: string): ChonStyleSchema {
-    let schema = this.currentMapping.get(name);
-
-    if (!schema) {
-      throw new Error(`Unknown style schema "${name}"`);
-    }
-
-    return schema;
-  }
-
   abstract get Button(): React.CSSProperties;
   abstract get Input(): React.CSSProperties;
 }
