@@ -30,27 +30,34 @@ export abstract class ChonComponent<
   TState = {},
   TSnapshot = unknown
 > extends Component<TProps, TState, TSnapshot> {
-  protected schema: ComponentSchema<TSchemaElementDict>;
+  protected schema!: ComponentSchema<TSchemaElementDict>;
+
+  componentWillReceiveProps(nextProps: Readonly<TProps>): void {
+    this.initializeSchema(nextProps.compType!);
+  }
 
   constructor(props: TProps) {
     super(props);
-    const {compType} = this.props;
+    this.initializeSchema(props.compType);
+  }
+
+  initializeSchema(compType?: string): void {
     const schemas = compConfig[this.constructor.name];
 
-    if (schemas) {
-      if (compType && schemas[compType!]) {
-        this.schema = schemas[compType!];
-      } else if (schemas.default) {
-        this.schema = schemas.default;
-      } else {
-        throw new Error(
-          `cannot find ${compType} componentSchema in component}`,
-        );
-      }
-    } else {
+    if (!schemas) {
+      throw new Error(`cannot find ${compType} componentSchema in component}`);
+    }
+
+    if (!schemas[compType!] && !schemas.default) {
       throw new Error(
         `${this.constructor.name} not has a default componentSchema`,
       );
+    }
+
+    if (compType && schemas[compType!]) {
+      this.schema = schemas[compType!];
+    } else if (schemas.default) {
+      this.schema = schemas.default;
     }
   }
 }
