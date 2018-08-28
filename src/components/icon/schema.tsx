@@ -15,7 +15,11 @@ export class SingleIconSchema
     return (
       <>
         <Content>
-          <FontAwesomeIcon icon={props.icon as FAIconProps} />
+          {props.icon ? (
+            <FontAwesomeIcon icon={props.icon as FAIconProps} />
+          ) : (
+            ''
+          )}
         </Content>
       </>
     );

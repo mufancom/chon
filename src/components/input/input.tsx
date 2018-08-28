@@ -22,36 +22,40 @@ export class Input extends ChonComponent<
   InputProps,
   InputComponentSchemaElemDict
 > {
-  // shouldComponentUpdate(nextProps: Readonly<InputProps>): boolean {
-  //   const omitList = ['value'];
 
-  //   if (_.isEqual(_.omit(this.props, omitList), _.omit(nextProps, omitList))) {
-  //     return false;
-  //   }
+  private mounted: boolean = false;
+  component: any;
 
-  //   return true;
-  // }
+  constructor(props: InputProps) {
+    super(props);
+  }
 
   render(): React.ReactNode {
-    let WrappedIcon = (
-      props: ChonComponentIconProps,
-    ): React.ReactElement<ChonComponentIconProps> => (
+    let WrappedIcon = (props: ChonComponentIconProps): JSX.Element => (
       <Icon {...props} icon={this.props.icon || props.icon || ''} />
     );
-    let WrappedEditText = (
-      props: EditTextProps,
-    ): React.ReactElement<EditTextProps> => (
-      <EditText
-        {...props}
-        onChange={this.props.onChange || props.onChange}
-        value={this.props.value || props.value}
-      />
-    );
 
-    const component = this.schema.compose({
-      Icon: WrappedIcon,
-      EditText: WrappedEditText,
-    });
+    let WrappedEditText = (props: EditTextProps): JSX.Element => {
+      return (
+        <EditText
+          {...this.props}
+          onChange={this.props.onChange || props.onChange}
+          value={
+            this.props.value === undefined ? props.value : this.props.value
+          }
+        />
+      );
+    };
+
+    if (!this.mounted) {
+      this.component = () =>
+        this.schema.compose({
+          Icon: WrappedIcon,
+          EditText: WrappedEditText,
+        });
+      this.mounted = true;
+    }
+
     return (
       <StyleContextConsumer>
         {({schema}) => {
@@ -62,7 +66,7 @@ export class Input extends ChonComponent<
                 ...{display: 'flex', flexDirection: 'row'},
               }}
             >
-              {component}
+              <this.component />
             </div>
           );
         }}

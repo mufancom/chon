@@ -32,30 +32,44 @@ export abstract class ChonComponent<
 > extends Component<TProps, TState, TSnapshot> {
   protected schema!: ComponentSchema<TSchemaElementDict>;
 
-  componentWillReceiveProps(nextProps: Readonly<TProps>): void {
-    this.initializeSchema(nextProps.compType!);
-  }
-
   constructor(props: TProps) {
     super(props);
     this.initializeSchema(props.compType);
+  }
+
+  componentWillReceiveProps(nextProps: Readonly<TProps>): void {
+    this.initializeSchema(nextProps.compType!);
   }
 
   initializeSchema(compType?: string): void {
     const schemas = compConfig[this.constructor.name];
 
     if (!schemas) {
-      throw new Error(`cannot find ${compType} componentSchema in component}`);
-    }
-
-    if (!schemas[compType!] && !schemas.default) {
       throw new Error(
-        `${this.constructor.name} not has a default componentSchema`,
+        `cannot find any schema belongs to ${this.constructor.name}`,
       );
     }
 
-    if (compType && schemas[compType!]) {
-      this.schema = schemas[compType!];
+    if (compType) {
+      if (!schemas[compType]) {
+        console.warn(
+          `Cannot find '${compType}' componentSchema for '${
+            this.constructor.name
+          }' Component, try to use default schema`,
+        );
+      } else {
+        this.schema = schemas[compType];
+        return;
+      }
+    } else if (!schemas.default) {
+      throw new Error(
+        `component '${
+          this.constructor.name
+        }' didn't specify 'compType' or default schema `,
+      );
+    }
+
+    if (compType && schemas[compType]) {
     } else if (schemas.default) {
       this.schema = schemas.default;
     }

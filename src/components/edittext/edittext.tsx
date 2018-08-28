@@ -8,8 +8,18 @@ export interface EditTextProps extends ChonComponentProps {
   onChange?: React.FormEventHandler<HTMLInputElement>;
 }
 
-export function EditText(
-  props: EditTextProps,
-): React.ReactElement<EditTextProps> {
-  return <input style={{border: 0, outline: 0, flexGrow: 1}} {...props} />;
+export class EditText extends React.Component<EditTextProps> {
+  render(): React.ReactNode {
+    return (
+      <input
+        style={{
+          border: 0,
+          outline: 0,
+          flexGrow: 1,
+        }}
+        value={this.props.value}
+        onChange={this.props.onChange}
+      />
+    );
+  }
 }

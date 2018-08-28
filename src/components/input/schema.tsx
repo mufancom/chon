@@ -6,11 +6,11 @@ import {InputComponentSchemaElemDict} from './input';
 
 export class WithIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose(schemaElem: InputComponentSchemaElemDict): JSX.Element {
+  compose({Icon, EditText}: InputComponentSchemaElemDict): JSX.Element {
     return (
       <>
-        <schemaElem.Icon />
-        <schemaElem.EditText />
+        <Icon />
+        <EditText />
       </>
     );
   }
@@ -18,10 +18,10 @@ export class WithIconInputSchema
 
 export class NormalInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose(schemaElem: InputComponentSchemaElemDict): JSX.Element {
+  compose({EditText}: InputComponentSchemaElemDict): JSX.Element {
     return (
       <>
-        <schemaElem.EditText />
+        <EditText value="123" />
       </>
     );
   }
@@ -29,11 +29,11 @@ export class NormalInputSchema
 
 export class RightIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose(schemaElem: InputComponentSchemaElemDict): JSX.Element {
+  compose({Icon, EditText}: InputComponentSchemaElemDict): JSX.Element {
     return (
       <>
-        <schemaElem.EditText />
-        <schemaElem.Icon />
+        <EditText />
+        <Icon />
       </>
     );
   }
