@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {ComponentSchema} from '../../core';
-
-import {ButtonComponentSchemaElementDict} from './button';
+import {ButtonComponentSchemaElementDict} from '../components/button';
+import {ComponentSchema} from '../core';
 
 export class PrimaryButtonSchema
   implements ComponentSchema<ButtonComponentSchemaElementDict> {

@@ -1,7 +1,7 @@
 import {Color} from 'csstype';
 
 import {ChonStyleSchema} from '../../src/core';
-import {DefaultStyleSchema} from '../../src/default-theme/style';
+import {DefaultStyleSchema} from '../../src/default-config';
 
 export class ThemeColorStyleSchema extends ChonStyleSchema {
   constructor(private primaryColor: Color) {

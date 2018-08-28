@@ -2,9 +2,8 @@ import {IconProp as FAIconProps} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-import {ComponentSchema} from '../../core';
-
-import {IconComponentSchemaElementDict, IconProps} from './icon';
+import {IconComponentSchemaElementDict, IconProps} from '../components/icon';
+import {ComponentSchema} from '../core';
 
 export class SingleIconSchema
   implements ComponentSchema<IconComponentSchemaElementDict> {

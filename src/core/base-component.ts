@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, {Component, ReactNode} from 'react';
 
-import defaultSchemas from '../default-theme/component-config';
+import defaultSchemas from '../default-config/component';
 
 let compConfig = defaultSchemas;
 
