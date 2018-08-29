@@ -9,7 +9,7 @@ import {
   NormalInputSchema,
   RightIconInputSchema,
   WithIconInputSchema,
-} from '../layout/InoutLayout';
+} from '../layout/InputLayout';
 
 const config: ComponentSchemaConfig = {
   Button: {

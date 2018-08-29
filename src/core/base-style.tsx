@@ -1,17 +1,29 @@
 import _ from 'lodash';
 import * as React from 'react';
-import {Dict} from 'tslang';
+import styled, {StyledComponentClass} from 'styled-components';
+import {Dict, KeyOfValueWithType} from 'tslang';
 
 export abstract class ChonStyleSchema {
-  abstract get Button(): React.CSSProperties;
-  abstract get Input(): React.CSSProperties;
+  abstract Button(): string;
+  abstract Input(): string;
+
+  getComponentStyleByName<TKey extends KeyOfValueWithType<this, () => string>>(
+    name: TKey,
+  ): this[TKey] {
+    return this[name];
+  }
 }
 
+type StyleWrapper = (
+  styleLessComponent: React.ComponentType,
+  componentName: KeyOfValueWithType<ChonStyleSchema, () => string>,
+) => StyledComponentClass<{}, {}>;
+
 interface ChonStyleSchemaContext {
-  schema: ChonStyleSchema;
   mapping: Dict<string>;
   mappingConfig: Dict<Dict<string>>;
   schemas: Dict<ChonStyleSchema>;
+  styleWrapper?: StyleWrapper;
 }
 
 export const {
@@ -51,24 +63,46 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
     return (
       <StyleContextConsumer>
         {context => {
+          let isRoot = false;
+
           if (!context) {
             context = this.buildContext();
+            isRoot = true;
           }
 
-          let {schema, schemas: schemaDict, mapping, mappingConfig} = context;
+          let {schemas: schemaDict, mapping, mappingConfig} = context;
 
           let {schema: schemaName, children} = this.props;
+          let currentSchema: ChonStyleSchema | undefined;
+          let styleWrapper: StyleWrapper;
 
           if (schemaName) {
             schemaName = mapping[schemaName];
-            schema = schemaDict[schemaName];
+            currentSchema = schemaDict[schemaName]
+              ? schemaDict[schemaName]
+              : schemaDict.default;
+
+            if (!isRoot && !currentSchema) {
+              throw new Error(`schema ${this.props.schema} cannot be found`);
+            }
+
             mapping = {...mapping, ...mappingConfig[schemaName]};
+          } else {
+            currentSchema = schemaDict.default;
           }
+
+          styleWrapper = (styleLessComponent, componentName) => {
+            let componentStyle = currentSchema!.getComponentStyleByName(
+              componentName,
+            );
+
+            return styled(styleLessComponent)({} as any, componentStyle());
+          };
 
           return (
             <StyleContextProvider
               value={{
-                schema,
+                styleWrapper,
                 schemas: schemaDict,
                 mapping,
                 mappingConfig,
@@ -90,7 +124,6 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
     }
 
     return {
-      schema: config.default,
       schemas: config.schemas,
       mapping: _.mapValues(config.schemas, (_, key) => key),
       mappingConfig: config.mapping,

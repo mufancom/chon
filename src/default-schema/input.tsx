@@ -5,35 +5,41 @@ import {ComponentSchema} from '../core';
 
 export class WithIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose({Icon, EditText}: InputComponentSchemaElemDict): JSX.Element {
+  compose(
+    {Icon, EditText}: InputComponentSchemaElemDict,
+    props: any,
+  ): JSX.Element {
     return (
-      <>
+      <div {...props}>
         <Icon />
         <EditText />
-      </>
+      </div>
     );
   }
 }
 
 export class NormalInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose({EditText}: InputComponentSchemaElemDict): JSX.Element {
+  compose({EditText}: InputComponentSchemaElemDict, props: any): JSX.Element {
     return (
-      <>
+      <div {...props}>
         <EditText value="123" />
-      </>
+      </div>
     );
   }
 }
 
 export class RightIconInputSchema
   implements ComponentSchema<InputComponentSchemaElemDict> {
-  compose({Icon, EditText}: InputComponentSchemaElemDict): JSX.Element {
+  compose(
+    {Icon, EditText}: InputComponentSchemaElemDict,
+    props: any,
+  ): JSX.Element {
     return (
-      <>
+      <div {...props}>
         <EditText />
         <Icon />
-      </>
+      </div>
     );
   }
 }

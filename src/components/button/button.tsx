@@ -26,30 +26,46 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElementDict
 > {
+  protected schemaElementDict: ButtonComponentSchemaElementDict;
+
+  constructor(props: ButtonProps) {
+    super(props);
+    this.schemaElementDict = {
+      Icon: this.Icon,
+      Text: this.Text,
+    };
+    this.compose();
+  }
+
+  Icon = (props: ChonComponentIconProps): JSX.Element => (
+    <Icon {...props} icon={this.props.icon || props.icon || ''} />
+  );
+
+  Text = (
+    props: TextProps & {children: React.ReactNode} & any,
+  ): JSX.Element => (
+    <Text {...props}>{this.props.children || props.children}</Text>
+  );
+
   render(): JSX.Element {
-    let {children} = this.props;
-
-    let WrappedIcon = (props: ChonComponentIconProps): JSX.Element => (
-      <Icon {...props} icon={this.props.icon || props.icon || ''} />
-    );
-
-    let WrappedText = (
-      props: TextProps & {children: React.ReactNode} & any,
-    ): JSX.Element => <Text {...props}>{children || props.children}</Text>;
-
-    const component = this.schema.compose({
-      Icon: WrappedIcon,
-      Text: WrappedText,
-    });
     return (
       <div>
         <StyleContextConsumer>
-          {({schema}) => {
-            return (
-              <button onClick={this.handleClick} style={schema.Button}>
-                {component}
-              </button>
-            );
+          {({styleWrapper}) => {
+            if (!this.mounted) {
+              const TempComponents = this.components;
+              const wrappedComponents: React.ComponentType = (props: any) => {
+                return (
+                  <button onClick={this.handleClick} {...props}>
+                    <TempComponents />
+                  </button>
+                );
+              };
+              this.components = styleWrapper!(wrappedComponents, 'Button');
+              this.mounted = true;
+            }
+
+            return <this.components />;
           }}
         </StyleContextConsumer>
       </div>

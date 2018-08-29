@@ -7,7 +7,7 @@ import {applyCompConfig} from '../src/core';
 import {StyleProvider} from '../src/core/base-style';
 
 import CompOne from './comp-one';
-// import CompTwo from './comp-two';
+import CompTwo from './comp-two';
 import componentConfig from './config/component-config';
 import styleConfig from './config/style-schema';
 import PageOne from './page-one';
@@ -25,9 +25,9 @@ class App extends React.Component {
           <CompOne />
           <PageOne />
         </StyleProvider>
-        {/* <StyleProvider config={styleConfig}>
+        <StyleProvider config={styleConfig}>
           <CompTwo />
-        </StyleProvider> */}
+        </StyleProvider>
       </>
     );
   }

@@ -16,12 +16,6 @@ export interface IconComponentSchemaElementDict
   Content: ComponentSchemaElement<any>;
 }
 
-// type X = {
-//   [K in keyof IconComponentSchemaElementDict]: Promise<
-//     IconComponentSchemaElementDict[K]
-//   >
-// };
-
 export interface ChonComponentIconProps extends ChonComponentProps {
   icon?: string;
 }
@@ -30,13 +24,21 @@ export class Icon extends ChonComponent<
   IconProps,
   IconComponentSchemaElementDict
 > {
+  protected schemaElementDict: IconComponentSchemaElementDict;
+
+  constructor(props: IconProps) {
+    super(props);
+    this.schemaElementDict = {
+      Content: this.Content,
+    };
+    this.compose();
+  }
+
+  Content = (props: {children: React.ReactNode} & any): JSX.Element => (
+    <div>{props.children}</div>
+  );
+
   render(): React.ReactNode {
-    let Content = (props: {children: React.ReactNode} & any): JSX.Element => (
-      <div>{props.children}</div>
-    );
-    return this.schema.compose(
-      {Content},
-      this.props,
-    );
+    return <this.components />;
   }
 }

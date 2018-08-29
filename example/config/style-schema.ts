@@ -1,30 +1,32 @@
-import {Color} from 'csstype';
-
-import {ChonStyleSchema} from '../../src/core';
 import {DefaultStyleSchema} from '../../src/default-config';
 
-export class ThemeColorStyleSchema extends ChonStyleSchema {
-  constructor(private primaryColor: Color) {
-    super();
-    this.primaryColor = primaryColor;
-  }
+// export class ThemeColorStyleSchema extends ChonStyleSchema {
+//   constructor(private primaryColor: Color) {
+//     super();
+//     this.primaryColor = primaryColor;
+//   }
 
-  get Button(): React.CSSProperties {
-    return {
-      padding: '10px 16px',
-      background: this.primaryColor,
-    };
-  }
+//   get Button(): React.CSSProperties {
+//     return {
+//       padding: '10px 16px',
+//       background: this.primaryColor,
+//     };
+//   }
 
-  get Input(): React.CSSProperties {
-    return {
-      padding: '10px 16px',
-      border: '1px solid',
-    };
-  }
-}
+//   get Input(): React.CSSProperties {
+//     return {
+//       padding: '10px 16px',
+//       border: '1px solid',
+//     };
+//   }
+// }
 
-const black = new ThemeColorStyleSchema('#000');
+const black = new DefaultStyleSchema({
+  primaryColor: '#000',
+  accentColor: '#000',
+  baseVerticalPadding: 10,
+  baseHorizontalPadding: 16,
+});
 const green = new DefaultStyleSchema({
   primaryColor: '#1D7F5F',
   accentColor: '#1D7F5F',

@@ -1,5 +1,4 @@
 import Color from 'color';
-import * as React from 'react';
 
 import {Color as ColorType} from 'csstype';
 
@@ -23,22 +22,22 @@ export class DefaultStyleSchema extends ChonStyleSchema {
     return c.isDark();
   }
 
-  get Button(): React.CSSProperties {
-    return {
-      padding: `${this.options.baseVerticalPadding}px
-        ${this.options.baseHorizontalPadding}px`,
-      backgroundColor: this.options.primaryColor,
-      borderRadius: this.options.borderRadius,
-      color: this.isDark(this.options.primaryColor) ? '#FFF' : '#000',
-    };
-  }
+  Button = (): string => {
+    return `
+      padding: ${this.options.baseVerticalPadding}px
+        ${this.options.baseHorizontalPadding}px;
+      background-color: ${this.options.primaryColor};
+      border-radius: ${this.options.borderRadius || '10px'};
+      color: ${this.isDark(this.options.primaryColor) ? '#FFF' : '#000'};
+    `;
+  };
 
-  get Input(): React.CSSProperties {
-    return {
-      padding: `${this.options.baseVerticalPadding}px
-        ${this.options.baseHorizontalPadding}px`,
-      border: `1px solid ${this.options.primaryColor}`,
-      borderRadius: this.options.borderRadius,
-    };
-  }
+  Input = (): string => {
+    return `
+      padding: ${this.options.baseVerticalPadding}px
+      ${this.options.baseHorizontalPadding}px;
+      border: 1px solid ${this.options.primaryColor};
+      border-radius: ${this.options.borderRadius};
+    `;
+  };
 }

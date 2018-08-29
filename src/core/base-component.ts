@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, {Component, ReactNode} from 'react';
+import {StyledComponentClass} from 'styled-components';
 
 import defaultSchemas from '../default-config/component';
 
@@ -31,10 +32,24 @@ export abstract class ChonComponent<
   TSnapshot = unknown
 > extends Component<TProps, TState, TSnapshot> {
   protected schema!: ComponentSchema<TSchemaElementDict>;
+  protected mounted = false;
+  protected abstract schemaElementDict: TSchemaElementDict;
 
   constructor(props: TProps) {
     super(props);
     this.initializeSchema(props.compType);
+  }
+
+  // componentDidUpdate(props): void {
+  //   this.compose();
+  // }
+
+  compose(): void {
+    this.components = ((props: any) =>
+      this.schema.compose(
+        this.schemaElementDict!,
+        props,
+      )) as React.SFC;
   }
 
   componentWillReceiveProps(nextProps: Readonly<TProps>): void {
@@ -74,13 +89,23 @@ export abstract class ChonComponent<
       this.schema = schemas.default;
     }
   }
+
+  protected components:
+    | StyledComponentClass<{}, {}>
+    | React.ComponentType = () => {
+    throw new Error(
+      `you should invoke "this.compose()" in ${
+        this.constructor.name
+      } constructor before use "this.components"`,
+    );
+  };
 }
 
 export interface ComponentSchema<
   TElementDict,
   T extends ChonComponentProps = ChonComponentProps
 > {
-  compose(elementDict: TElementDict, props?: T): ReactNode;
+  compose(elementDict: TElementDict, props: T): ReactNode;
 }
 
 export interface ComponentSchemaConfig {
