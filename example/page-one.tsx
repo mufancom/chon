@@ -5,6 +5,7 @@ import * as React from 'react';
 import {Button} from '../src/components/button';
 import {Icon} from '../src/components/icon';
 import {Input} from '../src/components/input';
+import {Tooltip} from '../src/components/tooltip';
 import {StyleProvider} from '../src/core';
 
 // import {StyleProvider} from '../src/core';
@@ -54,6 +55,9 @@ export default class PageOne extends React.Component<{}, PageOneState> {
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         />
+        <Tooltip title="Hahahaha!">
+          <span>Hellooooooooooooooooooooooooooooooooo</span>
+        </Tooltip>
         {/* <Icon icon="stroopwafel" /> */}
       </>
     );
