@@ -136,80 +136,207 @@ class App extends StyledApp {
 
 - 通用
 
-- [ ] Icon (图标)
-- [ ] Button (按钮)
-- [ ] Text (文本)
-- [ ] EditText (编辑框)
+  - [ ] Icon (图标)
+
+    - `icon`: `string`
+    - `size`: `string`
+    - `spin`: `boolean` 是否转动
+
+  - [ ] Button (按钮)
+
+    - `type`: `'primary'` | `'default'` | `'dashed'` | `'danger'`
+    - `icon`: `string`
+    - `size`: `string`
+    - `processing`: `boolean`
+    - `disabled`: `boolean`
+    - `ghost`: `boolean` 背景透明
+    - `block`: `boolean` 填满父元素宽度
+    - `onClick`: `() => void`
+
+  - [ ] Text (文本)
+
+    - `content`: `string`
+
+  - [ ] EditText (编辑框)
 
 - 布局
 
-- [ ] Grid (栅格)
-- [ ] Layout (布局)
-- [ ] Container (布局容器)
+  - [ ] Grid (栅格)
+  - [ ] Layout (布局)
+  - [ ] Container (布局容器)
 
 - 导航
 
-- [ ] Affix (固钉)
-- [ ] Breadcrumb (面包屑)
-- [ ] Dropdown (下拉菜单)
-- [ ] Menu (导航菜单)
-- [ ] Pagination (分页)
-- [ ] Steps (步骤条)
+  - [ ] Affix (固钉)
+  - [ ] Breadcrumb (面包屑)
+  - [ ] Menu (导航菜单)
+  - [ ] Dropdown (下拉菜单)
+  - [ ] Pagination (分页)
+  - [ ] Steps (步骤条)
 
 - 表单
 
-- [ ] AutoComplete (自动完成)
-- [ ] Cascader (级联选择)
-- [ ] Checkbox (多选框)
-- [ ] ColorPicker (颜色选择器)
-- [ ] DatePicker (日期选择框)
-- [ ] DateTimePicker (日期时间选择器)
-- [ ] Form (表单)
-- [ ] Input (输入框)
-- [ ] InputNumber (数字输入框)
-- [ ] Mention (提及)
-- [ ] Rate (评分)
-- [ ] Radio (单选框)
-- [ ] Select (选择器)
-- [ ] Slider (滑动输入条)
-- [ ] Switch (开关)
-- [ ] TreeSelect (树选择)
-- [ ] TimePicker (时间选择框)
-- [ ] Transfer (穿梭框)
-- [ ] Uploade (上传)
+  - [ ] AutoComplete (自动完成)
+
+    - `autoFocus`: `boolean`
+    - `backfill`: `boolean`
+    - `children`: `ReactElement` 自定义输入框
+    - `dataSource`: `SoureItem[]`
+    - `disabled`: `boolean`
+    - `placeholder`: `string`
+    - `value`: `string`
+    - `onBlur`: `(focused: boolean) => void`
+    - `onChange`: `(value: string) => void`
+    - `onFocus`: `(focused: boolean) => void`
+    - `onSearch`: `(value: string) => void`
+    - `onSelect`: `(value: string) => void`
+
+  - [ ] Cascader (级联选择)
+  - [ ] Checkbox (多选框)
+
+    - `autoFocus`: `boolean`
+    - `checked`: `boolean`
+    - `defaultChecked`: `boolean`
+    - `disabled`: `boolean`
+    - `onChange()`: `(checked: boolean) => void`
+
+  - [ ] ColorPicker (颜色选择器)
+  - [ ] DatePicker (日期选择框)
+  - [ ] DateTimePicker (日期时间选择器)
+  - [ ] Form (表单)
+  - [ ] Input (输入框)
+
+    - `addonAfter`: `string|ReactNode`
+    - `addonBefore`: `string|ReactNode`
+    - `defaultValue`: `string`
+    - `disabled`: `boolean`
+    - `id`: `string`
+    - `prefixIcon`: `string`
+    - `suffixIcon`: `string`
+    - `size`: `string`
+    - `type`: `string`
+    - `value`: `string`
+    - `onPressEnter`: `(value: string) => void`
+
+  - [ ] InputNumber (数字输入框)
+
+    - `disabled`: `boolean`
+    - `formatter`: `(value: number|string) => string` 格式化数字
+    - `max`: `number`
+    - `min`: `number`
+    - `parse`: `(value: string) => number` 将格式化后的的字符转回数字
+    - `precision`: `number` 精度
+    - `step`: `number`
+    - `value`: `number`
+    - `onChange`: `(value: number|string) => void`
+
+  - [ ] Mention (提及)
+  - [ ] Rate (评分)
+  - [ ] Radio (单选框)
+
+    - `checked`: `boolean`
+    - `value`: `string`
+    - `disabled`: `boolean`
+
+    - RadioGroup
+
+      - `disabled`: `boolean`
+      - `name`: `string`
+      - `options`: `string[]`
+      - `value`: `string`
+      - `type`: `'radio'|'button'`
+      - `onChange`: `(value: string) => void`
+
+  - [ ] Select (选择器)
+  - [ ] Slider (滑动输入条)
+
+    - `disabled`: `boolean`
+    - `points`: `number[]` 预设点
+    - `max`: `number`
+    - `min`: `number`
+    - `range`: `boolean`
+    - `step`: `number`
+    - `tipFormatter`: `(value: number|number[]) => string`
+    - `value`: `number|number[]`
+    - `onChange`: `(value: number|number[]) => string`
+
+  - [ ] Switch (开关)
+
+    - `checked`: `boolean`
+    - `disabled`: `boolean`
+    - `processing`: `boolean`
+    - `onChange`: `(checked: boolean) => void`
+
+  - [ ] TreeSelect (树选择)
+  - [ ] TimePicker (时间选择框)
+  - [ ] Transfer (穿梭框)
+  - [ ] Uploade (上传)
 
 - 数据展示
 
-- [ ] Avatar (头像)
-- [ ] Badge (徽标数)
-- [ ] Calendar (日历)
-- [ ] Card (卡片)
-- [ ] Carousel (走马灯)
-- [ ] Collapse (折叠面板)
-- [ ] List (列表)
-- [ ] Loading (加载)
-- [ ] Popover (气泡卡片)
-- [ ] Tooltip (文字提示)
-- [ ] Table (表格)
-- [ ] Tabs (标签页)
-- [ ] Tag (标签)
-- [ ] Timeline (时间轴)
-- [ ] Tree (树形控件)
+  - [ ] Avatar (头像)
+  - [ ] Badge (徽标数)
+
+    - `count`: `number`
+    - `dot`: `boolean` 仅显示一个点
+    - `offset`: `[number, number]`
+    - `showZero`: `boolean`
+    - `title`: `string`
+
+  - [ ] Calendar (日历)
+  - [ ] Card (卡片)
+  - [ ] Carousel (走马灯)
+
+    - `beforeChange`: `(current, next) => void`
+    - `afterChange`: `(prev, current) => void`
+    - `autoplay`: `boolean`
+    - `dots`: `boolean`
+    - `easing`: `string`
+    - `direction`: `'vertical'|'horizontal'`
+
+  - [ ] Collapse (折叠面板)
+
+    - `title`: `string` 折叠时显示的标题
+    - `onChange`: `(folded: boolean) => void`
+    - `forceRender`: `boolean`
+    - `disabled`: `boolean`
+
+  - [ ] List (列表)
+  - [ ] Loading (加载)
+  - [ ] Popover (气泡)
+
+    - `slot`: `ReactElement`
+    - `delay`: `ms: number`
+    - `place`: `'top'|'right'|'bottom'|'left'`
+    - `trigger`: `'hover'|'click'|'focus'`
+
+  - [ ] Tooltip (文字提示)
+
+    - `title`: `string`
+    - `delay`: `ms: number`
+    - `place`: `'top'|'right'|'bottom'|'left'`
+    - `trigger`: `'hover'|'click'|'focus'`
+
+  - [ ] Table (表格)
+  - [ ] Tabs (标签页)
+  - [ ] Tag (标签)
+  - [ ] Timeline (时间轴)
+  - [ ] Tree (树形控件)
 
 - 反馈
 
-- [ ] Alert (警告提示)
-- [ ] Drawer (抽屉)
-- [ ] Modal (对话框)
-- [ ] Message (全局提示)
-- [ ] Notification (通知提醒框)
-- [ ] Progress (进度条)
-- [ ] Popconfirm (气泡确认框)
-- [ ] Spin (加载中)
+  - [ ] Alert (警告提示)
+  - [ ] Drawer (抽屉)
+  - [ ] Modal (对话框)
+  - [ ] Message (全局提示)
+  - [ ] Notification (通知提醒框)
+  - [ ] Progress (进度条)
+  - [ ] Popconfirm (气泡确认框)
+  - [ ] Spin (加载中)
 
 - 其他
 
-- [ ] Anchor (锚点)
-- [ ] BackTop (回到顶部)
-- [ ] Divider (分割线)
-- [ ] LocaleProvider (国际化)
+  - [ ] Anchor (锚点)
+  - [ ] BackTop (回到顶部)
+  - [ ] Divider (分割线)
+  - [ ] LocaleProvider (国际化)
