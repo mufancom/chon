@@ -3,21 +3,24 @@ import * as React from 'react';
 import styled, {StyledComponentClass} from 'styled-components';
 import {Dict, KeyOfValueWithType} from 'tslang';
 
+import {ChonComponent, ChonComponentProps} from './base-component';
+
 export abstract class ChonStyleSchema {
-  abstract Button(): string;
+  abstract Button(...args: any[]): string;
   abstract Input(): string;
 
-  getComponentStyleByName<TKey extends KeyOfValueWithType<this, () => string>>(
-    name: TKey,
-  ): this[TKey] {
+  getComponentStyleByName<TKey extends keyof this>(name: TKey): any {
     return this[name];
   }
 }
 
 type StyleWrapper = (
-  styleLessComponent: React.ComponentType,
-  componentName: KeyOfValueWithType<ChonStyleSchema, () => string>,
+  styleLessComponent: React.ComponentType | ChonComponent,
+  componentName: StyledComponentName,
+  type?: string,
 ) => StyledComponentClass<{}, {}>;
+
+type StyledComponentName = KeyOfValueWithType<ChonStyleSchema, () => string>;
 
 interface ChonStyleSchemaContext {
   mapping: Dict<string>;
@@ -38,28 +41,6 @@ interface StyleProviderProps {
 
 export class StyleProvider extends React.Component<StyleProviderProps> {
   render(): React.ReactNode {
-    // {default: 'default', light：'light', dark: 'dark'}
-
-    // <StyleProvider schema="light">
-
-    // {
-    //   ...{default: 'default', light：'light', dark: 'dark'}
-    //   ...{reverse: 'dark'}
-    // }
-
-    // within schema light
-    // {default: 'default', light：'light', dark: 'dark', reverse: 'dark'}
-
-    // <StyleProvider schema="reverse">
-
-    // {
-    //   ...{default: 'default', light：'light', dark: 'dark', reverse: 'dark'}
-    //   ...{reverse: 'light'}
-    // }
-
-    // within schema dark
-    // {default: 'default', light：'light', dark: 'dark', reverse: 'light'}
-
     return (
       <StyleContextConsumer>
         {context => {
@@ -91,12 +72,21 @@ export class StyleProvider extends React.Component<StyleProviderProps> {
             currentSchema = schemaDict.default;
           }
 
-          styleWrapper = (styleLessComponent, componentName) => {
+          styleWrapper = (styleLessComponent, componentName, type) => {
             let componentStyle = currentSchema!.getComponentStyleByName(
               componentName,
             );
 
-            return styled(styleLessComponent)({} as any, componentStyle());
+            if (!componentStyle) {
+              throw new Error(
+                `cannot find StyleComponent defined with name "${componentName}" `,
+              );
+            }
+
+            return styled(styleLessComponent as React.ComponentType)(
+              {} as any,
+              componentStyle(type),
+            );
           };
 
           return (
@@ -139,5 +129,45 @@ export interface ChonStyleSchemaConfig<
   schemas: {[K in TSchemaName]: ChonStyleSchema};
   mapping: {
     [K in TSchemaName]: {[K in TSchemaName | TSchemaAlias]: TSchemaName}
+  };
+}
+
+export function chonStyle(
+  name?: StyledComponentName,
+): (target: React.ComponentType) => any {
+  return target => {
+    return class extends React.Component<ChonComponentProps> {
+      shouldReCompose = true;
+      StyledComponent!: React.ComponentType;
+
+      componentWillReceiveProps(nextProps: ChonComponentProps): void {
+        if (
+          nextProps.type === this.props.type &&
+          nextProps.compType === this.props.compType
+        ) {
+          this.shouldReCompose = false;
+        } else {
+          this.shouldReCompose = true;
+        }
+      }
+
+      render() {
+        return (
+          <StyleContextConsumer>
+            {({styleWrapper}) => {
+              if (this.shouldReCompose) {
+                this.StyledComponent = styleWrapper!(
+                  target,
+                  name ? name : (target.name as StyledComponentName),
+                  this.props.type,
+                );
+              }
+
+              return <this.StyledComponent {...this.props} />;
+            }}
+          </StyleContextConsumer>
+        );
+      }
+    };
   };
 }

@@ -5,8 +5,8 @@ import {
   ChonComponent,
   ComponentSchemaElement,
   GeneralComponentSchemaElementDict,
+  chonStyle,
 } from '../../core';
-import {StyleContextConsumer} from '../../core/base-style';
 import {EditText, EditTextProps} from '../edittext';
 import {ChonComponentIconProps, Icon} from '../icon';
 
@@ -16,8 +16,11 @@ export interface InputComponentSchemaElemDict
   EditText: ComponentSchemaElement<EditTextProps>;
 }
 
-export interface InputProps extends EditTextProps, ChonComponentIconProps {}
+export interface InputProps extends EditTextProps, ChonComponentIconProps {
+  className?: string;
+}
 
+@chonStyle()
 export class Input extends ChonComponent<
   InputProps,
   InputComponentSchemaElemDict
@@ -30,28 +33,10 @@ export class Input extends ChonComponent<
       Icon: this.Icon,
       EditText: this.EditText,
     };
-    this.compose();
   }
 
   render(): React.ReactNode {
-    return (
-      <div>
-        <StyleContextConsumer>
-          {({styleWrapper}) => {
-            if (!this.mounted) {
-              this.components = styleWrapper!(this.components, 'Input');
-              this.mounted = true;
-            }
-
-            return (
-              <div>
-                <this.components />
-              </div>
-            );
-          }}
-        </StyleContextConsumer>
-      </div>
-    );
+    return <this.components className={this.props.className} />;
   }
 
   private Icon = (props: ChonComponentIconProps): JSX.Element => (

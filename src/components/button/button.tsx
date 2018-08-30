@@ -6,7 +6,7 @@ import {
   ComponentSchemaElement,
   GeneralComponentSchemaElementDict,
 } from '../../core';
-import {StyleContextConsumer} from '../../core/base-style';
+import {chonStyle} from '../../core/base-style';
 import {ChonComponentIconProps, Icon} from '../icon';
 import {Text, TextProps} from '../text';
 
@@ -19,9 +19,12 @@ export interface ButtonComponentSchemaElementDict
 export interface ButtonProps
   extends ChonComponentProps,
     ChonComponentIconProps {
+  type?: 'default' | 'ghost';
+  className?: string;
   onClick?(): void;
 }
 
+@chonStyle()
 export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElementDict
@@ -34,7 +37,6 @@ export default class Button extends ChonComponent<
       Icon: this.Icon,
       Text: this.Text,
     };
-    this.compose();
   }
 
   Icon = (props: ChonComponentIconProps): JSX.Element => (
@@ -49,26 +51,9 @@ export default class Button extends ChonComponent<
 
   render(): JSX.Element {
     return (
-      <div>
-        <StyleContextConsumer>
-          {({styleWrapper}) => {
-            if (!this.mounted) {
-              const TempComponents = this.components;
-              const wrappedComponents: React.ComponentType = (props: any) => {
-                return (
-                  <button onClick={this.handleClick} {...props}>
-                    <TempComponents />
-                  </button>
-                );
-              };
-              this.components = styleWrapper!(wrappedComponents, 'Button');
-              this.mounted = true;
-            }
-
-            return <this.components />;
-          }}
-        </StyleContextConsumer>
-      </div>
+      <button onClick={this.handleClick} className={this.props.className}>
+        <this.components />
+      </button>
     );
   }
 
@@ -83,14 +68,4 @@ export default class Button extends ChonComponent<
       >)(e);
     }
   };
-
-  // static Icon = (
-  //   props: ChonIconProps,
-  // ): React.ComponentElement<ChonIconProps, Icon> =>
-  //   React.createElement(Icon, props);
-
-  // static Text = (
-  //   props: ChonTextProps,
-  // ): React.ComponentElement<ChonTextProps, Text> =>
-  //   React.createElement(Text, props);
 }
