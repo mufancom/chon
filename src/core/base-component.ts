@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React, {Component, ReactNode} from 'react';
-import {StyledComponentClass} from 'styled-components';
 
 import defaultSchemas from '../default-config/component';
 
@@ -14,6 +13,7 @@ export function applyCompConfig(
 
 export interface ChonComponentProps {
   compType?: string;
+  type?: string;
 }
 
 export type ComponentSchemaElement<T> = (
@@ -26,34 +26,32 @@ export interface GeneralComponentSchemaElementDict {
 }
 
 export abstract class ChonComponent<
-  TProps extends ChonComponentProps,
-  TSchemaElementDict extends GeneralComponentSchemaElementDict,
+  TProps extends ChonComponentProps = {},
+  TSchemaElementDict extends GeneralComponentSchemaElementDict = {},
   TState = {},
   TSnapshot = unknown
 > extends Component<TProps, TState, TSnapshot> {
   protected schema!: ComponentSchema<TSchemaElementDict>;
-  protected mounted = false;
+  protected styleNeedsUpdate = true;
   protected abstract schemaElementDict: TSchemaElementDict;
+  protected components!: React.ComponentType<TProps>;
 
   constructor(props: TProps) {
     super(props);
     this.initializeSchema(props.compType);
   }
 
-  // componentDidUpdate(props): void {
-  //   this.compose();
-  // }
-
-  compose(): void {
-    this.components = ((props: any) =>
-      this.schema.compose(
-        this.schemaElementDict!,
-        props,
-      )) as React.SFC;
+  componentWillMount(): void {
+    this.compose();
   }
 
-  componentWillReceiveProps(nextProps: Readonly<TProps>): void {
-    this.initializeSchema(nextProps.compType!);
+  compose(): void {
+    this.components = ((props: any) => {
+      return this.schema.compose(
+        this.schemaElementDict!,
+        props,
+      );
+    }) as React.ComponentType<TProps>;
   }
 
   initializeSchema(compType?: string): void {
@@ -89,16 +87,6 @@ export abstract class ChonComponent<
       this.schema = schemas.default;
     }
   }
-
-  protected components:
-    | StyledComponentClass<{}, {}>
-    | React.ComponentType = () => {
-    throw new Error(
-      `you should invoke "this.compose()" in ${
-        this.constructor.name
-      } constructor before use "this.components"`,
-    );
-  };
 }
 
 export interface ComponentSchema<

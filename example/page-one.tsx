@@ -1,14 +1,10 @@
 import * as React from 'react';
 
-// import {Button} from '../src/components/button';
-// import {Icon} from '../src/components/icon';
 import {Button} from '../src/components/button';
 import {Icon} from '../src/components/icon';
 import {Input} from '../src/components/input';
 import {Tooltip} from '../src/components/tooltip';
 import {StyleProvider} from '../src/core';
-
-// import {StyleProvider} from '../src/core';
 
 interface PageOneState {
   inputValue: string;
@@ -46,7 +42,7 @@ export default class PageOne extends React.Component<{}, PageOneState> {
         </StyleProvider>
         <StyleProvider schema="black">
           <Input
-            compType="withIcon"
+            // compType="withIcon"
             value={this.state.inputValue}
             onChange={this.handleInputChange}
           />

@@ -39,6 +39,6 @@ export class Icon extends ChonComponent<
   );
 
   render(): React.ReactNode {
-    return <this.components />;
+    return <this.components {...this.props} />;
   }
 }
