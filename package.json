@@ -5,12 +5,17 @@
   "author": "makeflow",
   "scripts": {
     "start": "webpack-dev-server --config example/config/webpack.config.dev.js --color --progress",
-    "build": "webpack --mode production --config example/config/webpack.config.prod.js"
+    "build": "webpack --mode production --config example/config/webpack.config.prod.js",
+    "test:src": "tsc -p src && tslint -p src",
+    "test:test": "tslint -p src",
+    "test:example": "tslint -p example",
+    "test": "yarn test:src && yarn test:example && yarn test:test && jest"
   },
   "license": "MIT",
   "devDependencies": {
     "@magicspace/configs": "^0.1.24",
     "@types/color": "^3.0.0",
+    "@types/jest": "^23.3.1",
     "@types/lodash": "^4.14.116",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
@@ -25,6 +30,7 @@
     "react-dom": "^16.4.2",
     "source-map-loader": "^0.2.4",
     "styled-components": "^3.4.4",
+    "ts-jest": "^23.1.4",
     "ts-loader": "^4.5.0",
     "tslint": "^5.11.0",
     "tslint-language-service": "^0.9.9",
