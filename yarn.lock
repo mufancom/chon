@@ -4352,6 +4352,10 @@ pn@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/pn/download/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
 
+popper.js@^1.14.4:
+  version "1.14.4"
+  resolved "http://registry.npm.taobao.org/popper.js/download/popper.js-1.14.4.tgz#8eec1d8ff02a5a3a152dd43414a15c7b79fd69b6"
+
 portfinder@^1.0.9:
   version "1.0.17"
   resolved "http://registry.npm.taobao.org/portfinder/download/portfinder-1.0.17.tgz#a8a1691143e46c4735edefcf4fbcccedad26456a"

@@ -51,8 +51,20 @@ export default class PageOne extends React.Component<{}, PageOneState> {
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         />
-        <Tooltip title="Hahahaha!">
-          <span>Hellooooooooooooooooooooooooooooooooo</span>
+        <Tooltip placement="top" title="Hahahaha!">
+          <span>Top tip</span>
+        </Tooltip>{' '}
+        |
+        <Tooltip placement="bottom" title="this is a bottom tip">
+          <span>Bottom tip</span>
+        </Tooltip>{' '}
+        |
+        <Tooltip placement="right" title="this is a right tip">
+          <span>Right tip</span>
+        </Tooltip>{' '}
+        |
+        <Tooltip placement="left" title="this is a left tip">
+          <span>Left tip</span>
         </Tooltip>
         {/* <Icon icon="stroopwafel" /> */}
       </>
