@@ -5,6 +5,7 @@ import {
   ChonComponent,
   ComponentSchemaElement,
   GeneralComponentSchemaElementDict,
+  SchemaElement,
   chonStyle,
 } from '../../core';
 import {EditText, EditTextProps} from '../edittext';
@@ -25,25 +26,21 @@ export class Input extends ChonComponent<
   InputProps,
   InputComponentSchemaElemDict
 > {
-  protected schemaElementDict: InputComponentSchemaElemDict;
-
   constructor(props: InputProps) {
     super(props);
-    this.schemaElementDict = {
-      Icon: this.Icon,
-      EditText: this.EditText,
-    };
   }
 
   render(): React.ReactNode {
     return <this.components className={this.props.className} />;
   }
 
-  private Icon = (props: ChonComponentIconProps): JSX.Element => (
+  @SchemaElement
+  Icon = (props: ChonComponentIconProps): JSX.Element => (
     <Icon {...props} icon={this.props.icon || props.icon || ''} />
   );
 
-  private EditText = (props: EditTextProps): JSX.Element => {
+  @SchemaElement
+  EditText = (props: EditTextProps): JSX.Element => {
     return (
       <EditText
         {...this.props}
