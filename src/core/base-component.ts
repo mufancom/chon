@@ -26,14 +26,14 @@ export interface GeneralComponentSchemaElementDict {
 }
 
 export abstract class ChonComponent<
-  TProps extends ChonComponentProps = {},
-  TSchemaElementDict extends GeneralComponentSchemaElementDict = {},
+  TProps extends ChonComponentProps = ChonComponentProps,
+  TSchemaElementDict extends GeneralComponentSchemaElementDict = GeneralComponentSchemaElementDict,
   TState = {},
   TSnapshot = unknown
 > extends Component<TProps, TState, TSnapshot> {
   protected schema!: ComponentSchema<TSchemaElementDict>;
   protected styleNeedsUpdate = true;
-  protected abstract schemaElementDict: TSchemaElementDict;
+  schemaElementDict!: TSchemaElementDict;
   protected components!: React.ComponentType<TProps>;
 
   constructor(props: TProps) {
@@ -99,5 +99,19 @@ export interface ComponentSchema<
 export interface ComponentSchemaConfig {
   [componentName: string]: {
     [typeName: string]: ComponentSchema<GeneralComponentSchemaElementDict>;
+  };
+}
+
+export function SchemaElement(_: any, key: string): any {
+  return {
+    set(this: ChonComponent, value: ComponentSchemaElement<any>) {
+      this.schemaElementDict = Object.assign(
+        this.schemaElementDict ? this.schemaElementDict : {},
+        {
+          [key]: value,
+        },
+      );
+      return this;
+    },
   };
 }

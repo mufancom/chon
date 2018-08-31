@@ -5,6 +5,7 @@ import {
   ChonComponentProps,
   ComponentSchemaElement,
   GeneralComponentSchemaElementDict,
+  SchemaElement,
 } from '../../core';
 import {chonStyle} from '../../core/base-style';
 import {ChonComponentIconProps, Icon} from '../icon';
@@ -29,20 +30,16 @@ export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElementDict
 > {
-  protected schemaElementDict: ButtonComponentSchemaElementDict;
-
   constructor(props: ButtonProps) {
     super(props);
-    this.schemaElementDict = {
-      Icon: this.Icon,
-      Text: this.Text,
-    };
   }
 
+  @SchemaElement
   Icon = (props: ChonComponentIconProps): JSX.Element => (
     <Icon {...props} icon={this.props.icon || props.icon || ''} />
   );
 
+  @SchemaElement
   Text = (
     props: TextProps & {children: React.ReactNode} & any,
   ): JSX.Element => (

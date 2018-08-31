@@ -5,6 +5,7 @@ import {
   ChonComponentProps,
   ComponentSchemaElement,
   GeneralComponentSchemaElementDict,
+  SchemaElement,
 } from '../../core';
 
 export interface IconProps extends ChonComponentIconProps {
@@ -24,16 +25,12 @@ export class Icon extends ChonComponent<
   IconProps,
   IconComponentSchemaElementDict
 > {
-  protected schemaElementDict: IconComponentSchemaElementDict;
-
   constructor(props: IconProps) {
     super(props);
-    this.schemaElementDict = {
-      Content: this.Content,
-    };
     this.compose();
   }
 
+  @SchemaElement
   Content = (props: {children: React.ReactNode} & any): JSX.Element => (
     <div>{props.children}</div>
   );
