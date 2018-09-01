@@ -2,7 +2,7 @@
   "extends": "../node_modules/@magicspace/configs/tsconfig-browser.json",
   "compilerOptions": {
     "jsx": "react",
-    "rootDir": ".",
+    "rootDir": "..",
     "outDir": "../bld",
     "experimentalDecorators": true
   }
