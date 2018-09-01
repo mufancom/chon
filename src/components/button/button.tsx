@@ -26,7 +26,7 @@ export interface ButtonProps
 }
 
 @chonStyle()
-export default class Button extends ChonComponent<
+export class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElementDict
 > {
