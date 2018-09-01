@@ -54,6 +54,26 @@
     resolve "^1.8.1"
     tsutils "^2.28.0"
 
+"@sinonjs/commons@^1.0.1":
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/@sinonjs/commons/download/@sinonjs/commons-1.0.2.tgz#3e0ac737781627b8844257fadc3d803997d0526e"
+  dependencies:
+    type-detect "4.0.8"
+
+"@sinonjs/formatio@^2.0.0":
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/@sinonjs/formatio/download/@sinonjs/formatio-2.0.0.tgz#84db7e9eb5531df18a8c5e0bfb6e449e55e654b2"
+  dependencies:
+    samsam "1.3.0"
+
+"@sinonjs/samsam@^2.0.0":
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/@sinonjs/samsam/download/@sinonjs/samsam-2.0.0.tgz#9163742ac35c12d3602dece74317643b35db6a80"
+
+"@types/cheerio@*":
+  version "0.22.9"
+  resolved "http://registry.npm.taobao.org/@types/cheerio/download/@types/cheerio-0.22.9.tgz#b5990152604c2ada749b7f88cab3476f21f39d7b"
+
 "@types/color-convert@*":
   version "1.9.0"
   resolved "http://registry.npm.taobao.org/@types/color-convert/download/@types/color-convert-1.9.0.tgz#bfa8203e41e7c65471e9841d7e306a7cd8b5172d"
@@ -69,6 +89,19 @@
   resolved "http://registry.npm.taobao.org/@types/color/download/@types/color-3.0.0.tgz#40f8a6bf2fd86e969876b339a837d8ff1b0a6e30"
   dependencies:
     "@types/color-convert" "*"
+
+"@types/enzyme-adapter-react-16@^1.0.3":
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/@types/enzyme-adapter-react-16/download/@types/enzyme-adapter-react-16-1.0.3.tgz#0cf7025b036694ca8d596fe38f24162e7117acf1"
+  dependencies:
+    "@types/enzyme" "*"
+
+"@types/enzyme@*", "@types/enzyme@^3.1.13":
+  version "3.1.13"
+  resolved "http://registry.npm.taobao.org/@types/enzyme/download/@types/enzyme-3.1.13.tgz#4bbc5c81fa40c9fc7efee25c4a23cb37119a33ea"
+  dependencies:
+    "@types/cheerio" "*"
+    "@types/react" "*"
 
 "@types/jest@^23.3.1":
   version "23.3.1"
@@ -101,6 +134,10 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/sinon@^5.0.2":
+  version "5.0.2"
+  resolved "http://registry.npm.taobao.org/@types/sinon/download/@types/sinon-5.0.2.tgz#7a9d64df40b26dd48d673f745addc2fdb2bda193"
 
 "@webassemblyjs/ast@1.5.13":
   version "1.5.13"
@@ -1516,7 +1553,7 @@ detect-node@^2.0.3:
   version "2.0.3"
   resolved "http://registry.npm.taobao.org/detect-node/download/detect-node-2.0.3.tgz#a2033c09cc8e158d37748fbde7507832bd6ce127"
 
-diff@^3.2.0:
+diff@^3.2.0, diff@^3.5.0:
   version "3.5.0"
   resolved "http://registry.npm.taobao.org/diff/download/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
 
@@ -3387,6 +3424,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+just-extend@^3.0.0:
+  version "3.0.0"
+  resolved "http://registry.npm.taobao.org/just-extend/download/just-extend-3.0.0.tgz#cee004031eaabf6406da03a7b84e4fe9d78ef288"
+
 killable@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/killable/download/killable-1.0.0.tgz#da8b84bd47de5395878f95d64d02f2449fe05e6b"
@@ -3493,6 +3534,10 @@ lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "http://registry.npm.taobao.org/lodash.flattendeep/download/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
 
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "http://registry.npm.taobao.org/lodash.get/download/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "http://registry.npm.taobao.org/lodash.sortby/download/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -3517,6 +3562,10 @@ loglevelnext@^1.0.1:
   dependencies:
     es6-symbol "^3.1.1"
     object.assign "^4.1.0"
+
+lolex@^2.3.2, lolex@^2.7.1:
+  version "2.7.1"
+  resolved "http://registry.npm.taobao.org/lolex/download/lolex-2.7.1.tgz#e40a8c4d1f14b536aa03e42a537c7adbaf0c20be"
 
 long@4.0.0:
   version "4.0.0"
@@ -3878,6 +3927,16 @@ next-tick@1:
 nice-try@^1.0.4:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/nice-try/download/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
+
+nise@^1.4.2:
+  version "1.4.4"
+  resolved "http://registry.npm.taobao.org/nise/download/nise-1.4.4.tgz#b8d9dd35334c99e514b75e46fcc38e358caecdd0"
+  dependencies:
+    "@sinonjs/formatio" "^2.0.0"
+    just-extend "^3.0.0"
+    lolex "^2.3.2"
+    path-to-regexp "^1.7.0"
+    text-encoding "^0.6.4"
 
 no-case@^2.2.0:
   version "2.3.2"
@@ -4323,6 +4382,12 @@ path-parse@^1.0.5:
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
+
+path-to-regexp@^1.7.0:
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
+  dependencies:
+    isarray "0.0.1"
 
 path-type@^1.0.0:
   version "1.1.0"
@@ -4891,6 +4956,10 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "http://registry.npm.taobao.org/safer-buffer/download/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
+samsam@1.3.0:
+  version "1.3.0"
+  resolved "http://registry.npm.taobao.org/samsam/download/samsam-1.3.0.tgz#8d1d9350e25622da30de3e44ba692b5221ab7c50"
+
 sane@^2.0.0:
   version "2.5.2"
   resolved "http://registry.npm.taobao.org/sane/download/sane-2.5.2.tgz#b4dc1861c21b427e929507a3e751e2a2cb8ab3fa"
@@ -5042,6 +5111,20 @@ simple-swizzle@^0.2.2:
   resolved "http://registry.npm.taobao.org/simple-swizzle/download/simple-swizzle-0.2.2.tgz#a4da6b635ffcccca33f70d17cb92592de95e557a"
   dependencies:
     is-arrayish "^0.3.1"
+
+sinon@^6.1.5:
+  version "6.1.5"
+  resolved "http://registry.npm.taobao.org/sinon/download/sinon-6.1.5.tgz#41451502d43cd5ffb9d051fbf507952400e81d09"
+  dependencies:
+    "@sinonjs/commons" "^1.0.1"
+    "@sinonjs/formatio" "^2.0.0"
+    "@sinonjs/samsam" "^2.0.0"
+    diff "^3.5.0"
+    lodash.get "^4.4.2"
+    lolex "^2.7.1"
+    nise "^1.4.2"
+    supports-color "^5.4.0"
+    type-detect "^4.0.8"
 
 sisteransi@^0.1.1:
   version "0.1.1"
@@ -5415,6 +5498,10 @@ test-exclude@^4.2.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
+text-encoding@^0.6.4:
+  version "0.6.4"
+  resolved "http://registry.npm.taobao.org/text-encoding/download/text-encoding-0.6.4.tgz#e399a982257a276dae428bb92845cb71bdc26d19"
+
 throat@^4.0.0:
   version "4.1.0"
   resolved "http://registry.npm.taobao.org/throat/download/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"
@@ -5584,6 +5671,10 @@ type-check@~0.3.2:
   resolved "http://registry.npm.taobao.org/type-check/download/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
   dependencies:
     prelude-ls "~1.1.2"
+
+type-detect@4.0.8, type-detect@^4.0.8:
+  version "4.0.8"
+  resolved "http://registry.npm.taobao.org/type-detect/download/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
 
 type-is@~1.6.15, type-is@~1.6.16:
   version "1.6.16"
