@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, {Component, ReactNode} from 'react';
+import styled from 'styled-components';
 
 import defaultSchemas from '../default-config/component';
 
@@ -35,6 +36,7 @@ export abstract class ChonComponent<
   protected styleNeedsUpdate = true;
   schemaElementDict!: TSchemaElementDict;
   protected components!: React.ComponentType<TProps>;
+  protected styled = styled;
 
   constructor(props: TProps) {
     super(props);

@@ -7,7 +7,7 @@ import {
   GeneralComponentSchemaElementDict,
   SchemaElement,
 } from '../../core';
-import {chonStyle} from '../../core/base-style';
+// import {chonStyle} from '../../core/base-style';
 import {ChonComponentIconProps, Icon} from '../icon';
 import {Text, TextProps} from '../text';
 
@@ -25,11 +25,17 @@ export interface ButtonProps
   onClick?(): void;
 }
 
-@chonStyle()
+// @chonStyle()
 export default class Button extends ChonComponent<
   ButtonProps,
   ButtonComponentSchemaElementDict
 > {
+  Button = this.styled.button`
+    ${props => {
+      return props.theme.schema.Button('default');
+    }};
+  `;
+
   constructor(props: ButtonProps) {
     super(props);
   }
@@ -48,21 +54,9 @@ export default class Button extends ChonComponent<
 
   render(): JSX.Element {
     return (
-      <button onClick={this.handleClick} className={this.props.className}>
+      <this.Button>
         <this.components />
-      </button>
+      </this.Button>
     );
   }
-
-  private handleClick: React.MouseEventHandler<
-    HTMLButtonElement | HTMLAnchorElement
-  > = e => {
-    const {onClick} = this.props;
-
-    if (onClick) {
-      (onClick as React.MouseEventHandler<
-        HTMLButtonElement | HTMLAnchorElement
-      >)(e);
-    }
-  };
 }
