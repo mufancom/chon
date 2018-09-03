@@ -40,9 +40,9 @@ applyCompConfig(config);
 class App extends React.Component<> {
   render() {
     <>
-      <Button compType="custom">text in component</Button>
-      <Button compType="custom" /> // 如果 component 里 text 为空，则显示 layout中的
-      <Button compType="primary" /> // 使用框架默认提供的布局
+      <Button type="custom">text in component</Button>
+      <Button type="custom" /> // 如果 component 里 text 为空，则显示 layout中的
+      <Button type="primary" /> // 使用框架默认提供的布局
     </>;
   }
 }
