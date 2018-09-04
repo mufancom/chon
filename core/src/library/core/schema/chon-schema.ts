@@ -1,10 +1,10 @@
-import {AbstractChonStyle} from './chon-style';
-
 declare global {
   namespace Chon {
     interface ComposerDict {}
 
     type ComponentName = keyof ComposerDict;
+
+    interface Style {}
   }
 }
 
@@ -15,7 +15,7 @@ export interface ChonSchemaStatic {
 export abstract class AbstractChonSchema {
   constructor(
     readonly composers: Chon.ComposerDict,
-    readonly style: AbstractChonStyle,
+    readonly style: Chon.Style,
   ) {}
 
   static create(): AbstractChonSchema {

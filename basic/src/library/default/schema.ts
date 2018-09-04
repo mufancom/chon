@@ -10,8 +10,8 @@ export class DefaultSchema extends AbstractChonSchema {
 
   static create(_parent?: AbstractChonSchema): DefaultSchema {
     let style = new DefaultStyle({
-      foreground: 'black',
-      background: 'white',
+      foreground: '#117cf3',
+      background: '#fff',
     });
 
     return new DefaultSchema(style);

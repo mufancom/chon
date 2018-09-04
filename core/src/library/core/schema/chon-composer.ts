@@ -1,4 +1,4 @@
-import {ReactNode, SFC} from 'react';
+import {ReactElement, SFC} from 'react';
 import {Dict, KeyOfValueWithType} from 'tslang';
 
 import {
@@ -31,7 +31,7 @@ export type ChonComponentComposer<
 > = (
   elements: ChonElementDictType<TChonComponent>,
   component: TChonComponent,
-) => ReactNode;
+) => ReactElement<{}>;
 
 export type ChonComponentComposerDict<
   TChonComponent extends AbstractChonComponent
@@ -50,7 +50,7 @@ export class ChonComposer<TChonComponent extends AbstractChonComponent> {
   compose(
     elements: ChonElementDictType<TChonComponent>,
     component: TChonComponent,
-  ): ReactNode {
+  ): ReactElement<{}> {
     let {type = this.defaultType} = component.props;
 
     let composer = ((this.componentComposerDict as Dict<any>) as Dict<

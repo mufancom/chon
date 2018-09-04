@@ -1,5 +1,11 @@
 import _ from 'lodash';
-import React, {Component, ComponentType, ReactNode, createContext} from 'react';
+import React, {
+  Component,
+  ComponentType,
+  ReactNode,
+  SFC,
+  createContext,
+} from 'react';
 
 import {AbstractChonSchema, ChonSchemaStatic} from '../schema';
 
@@ -104,5 +110,13 @@ export function theme<TThemeConfig extends ThemeConfig>(
     SwitchSchema,
   };
 }
+
+export interface StyleConsumerProps {
+  children(style: Chon.Style): ReactNode;
+}
+
+export const StyleConsumer: SFC<StyleConsumerProps> = ({children}) => {
+  return <Consumer>{({activeSchema: {style}}) => children(style)}</Consumer>;
+};
 
 export {Consumer as SchemaConsumer};

@@ -1,14 +1,10 @@
+import classnames from 'classnames';
 import _ from 'lodash';
 import {observer} from 'mobx-react';
-import React, {Component, ReactNode, SFC} from 'react';
+import React, {Component, ReactNode, SFC, cloneElement} from 'react';
 import {Default, Dict} from 'tslang';
 
-import {
-  AbstractChonSchema,
-  AbstractChonStyle,
-  ChonComposer,
-  ChonElementKeyType,
-} from './schema';
+import {AbstractChonSchema, ChonComposer, ChonElementKeyType} from './schema';
 import {SchemaConsumer} from './theme';
 
 export interface ChonComponentPropsPartial<TProps extends object> {
@@ -54,6 +50,7 @@ export abstract class AbstractChonComponent<
   __elementDict: Dict<ChonElement> = {};
 
   name!: Chon.ComponentName;
+  className!: string;
 
   protected schema!: AbstractChonSchema;
 
@@ -61,28 +58,47 @@ export abstract class AbstractChonComponent<
     return this.schema.composers;
   }
 
-  get style(): AbstractChonStyle {
+  get style(): Chon.Style {
     return this.schema.style;
   }
 
   render(): ReactNode {
-    return ((this.composers[this.name] as any) as ChonComposer<this>).compose(
+    let node = ((this.composers[this.name] as any) as ChonComposer<
+      this
+    >).compose(
       this.__elementDict as any,
       this,
     );
+
+    return cloneElement(node, {
+      className: classnames((node.props as any).className, this.className),
+    } as object);
+  }
+
+  static className: string;
+
+  static toString(): string {
+    return `.${this.className}`;
   }
 }
 
 // tslint:disable-next-line:explicit-return-type
 export function ChonComponent(name?: Chon.ComponentName) {
   return (ChonComponent: typeof AbstractChonComponent): any => {
+    name = name || (ChonComponent.name as Chon.ComponentName);
+
+    let className = `chon-component-${name.toLowerCase()}`;
+
+    ChonComponent.className = className;
+
     let constructor = class extends ChonComponent<any> {
       // tslint:disable-next-line:empty-line-around-blocks
       render(): ReactNode {
         return (
           <SchemaConsumer>
             {({activeSchema}) => {
-              this.name = name || (ChonComponent.name as Chon.ComponentName);
+              this.name = name!;
+              this.className = className;
               this.schema = activeSchema;
               return super.render();
             }}

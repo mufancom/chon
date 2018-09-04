@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, {MouseEvent, ReactNode} from 'react';
+import React, {MouseEvent} from 'react';
 
 import {
   AbstractChonComponent,
@@ -24,6 +24,7 @@ declare global {
 export type ButtonProps<
   TType extends Chon.ButtonType = Chon.ButtonType
 > = IChonComponentProps<Chon.ButtonTypeToProps, TType> & {
+  progressing?: boolean;
   disabled?: boolean;
   onClick?(this: Window, event: MouseEvent): void;
 };
