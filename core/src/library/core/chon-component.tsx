@@ -1,9 +1,14 @@
 import _ from 'lodash';
 import {observer} from 'mobx-react';
-import React, {Component, ReactNode} from 'react';
+import React, {Component, ReactNode, SFC} from 'react';
 import {Default, Dict} from 'tslang';
 
-import {AbstractChonSchema, ChonComposer, ChonElementKeyType} from './schema';
+import {
+  AbstractChonSchema,
+  AbstractChonStyle,
+  ChonComposer,
+  ChonElementKeyType,
+} from './schema';
 import {SchemaConsumer} from './theme';
 
 export interface ChonComponentPropsPartial<TProps extends object> {
@@ -37,7 +42,9 @@ export interface ChonElementProps {
   className?: string;
 }
 
-export type ChonElement = (props?: ChonElementProps) => ReactNode;
+export type ChonElement<
+  TProps extends ChonElementProps = ChonElementProps
+> = SFC<TProps>;
 
 export abstract class AbstractChonComponent<
   TProps extends IChonComponentProps = GeneralChonComponentProps
@@ -50,10 +57,16 @@ export abstract class AbstractChonComponent<
 
   protected schema!: AbstractChonSchema;
 
+  get composers(): Chon.ComposerDict {
+    return this.schema.composers;
+  }
+
+  get style(): AbstractChonStyle {
+    return this.schema.style;
+  }
+
   render(): ReactNode {
-    return ((this.schema.composers[this.name] as any) as ChonComposer<
-      this
-    >).compose(
+    return ((this.composers[this.name] as any) as ChonComposer<this>).compose(
       this.__elementDict as any,
       this,
     );

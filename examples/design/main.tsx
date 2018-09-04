@@ -1,10 +1,9 @@
-import {Button, theme} from 'chon';
-import {basicTheme} from 'chon-basic';
+import {faPlane} from '@fortawesome/free-solid-svg-icons';
+import {Button} from 'chon';
+import {ThemeProvider} from 'chon-basic';
 import {observer} from 'mobx-react';
 import React, {Component, ReactNode} from 'react';
 import ReactDOM from 'react-dom';
-
-const {SwitchSchema, ThemeProvider} = theme(basicTheme);
 
 @observer
 export class App extends Component {
@@ -12,6 +11,7 @@ export class App extends Component {
     return (
       <ThemeProvider>
         <Button>test</Button>
+        <Button icon={faPlane}>test</Button>
       </ThemeProvider>
     );
   }

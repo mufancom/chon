@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "repository": "https://github.com/makeflow/chon.git",
   "author": "makeflow",
-  "scripts": {
-  },
+  "scripts": {},
   "license": "MIT",
   "main": "bld/library/index.js",
   "types": "bld/library/index.d.ts",
@@ -25,6 +24,9 @@
     "react-dom": "^16.4.2"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@fortawesome/react-fontawesome": "^0.1.2",
     "lodash": "^4.17.10",
     "tslang": "^0.1.9",
     "typestyle": "^2.0.1"

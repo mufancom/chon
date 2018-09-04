@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "repository": "https://github.com/makeflow/chon.git",
   "author": "makeflow",
-  "scripts": {
-  },
+  "scripts": {},
   "license": "MIT",
   "main": "bld/library/index.js",
   "types": "bld/library/index.d.ts",
@@ -15,6 +14,7 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.6",
     "@types/lodash": "^4.14.116",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
@@ -24,6 +24,7 @@
     "react-dom": "^16.4.2"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "lodash": "^4.17.10",
     "tslang": "^0.1.9",
     "typestyle": "^2.0.1"

@@ -3,21 +3,25 @@
   "version": "0.0.0",
   "repository": "https://github.com/makeflow/chon.git",
   "author": "makeflow",
-  "scripts": {
-  },
+  "scripts": {},
   "license": "MIT",
+  "peerDependencies": {
+    "chon": "*",
+    "chon-basic": "*"
+  },
   "devDependencies": {
     "@types/lodash": "^4.14.116",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
     "lodash": "^4.17.10",
-    "tslang": "^0.1.9",
-    "typestyle": "^2.0.1",
     "mobx": "^5.1.0",
     "mobx-react": "^5.2.5",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "tslang": "^0.1.9",
+    "typestyle": "^2.0.1"
   }
 }

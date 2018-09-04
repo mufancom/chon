@@ -3,6 +3,7 @@ import React from 'react';
 
 import {
   AbstractChonComponent,
+  ChonComponent,
   ChonComposer,
   ChonElement,
   IChonComponentProps,
@@ -23,15 +24,13 @@ declare global {
 export type IconProps<TType extends Chon.IconType> = IChonComponentProps<
   Chon.IconTypeToProps,
   TType
-> & {
-  name: never;
-};
+>;
 
 export type IconUnion<
   TType extends Chon.IconType = Chon.IconType
 > = TType extends Chon.IconType ? Icon<TType> : never;
 
-@observer
+@ChonComponent()
 export class Icon<
   TType extends Chon.IconType = Chon.IconType
 > extends AbstractChonComponent<IconProps<TType>> {

@@ -1,24 +1,34 @@
 import {ReactNode, SFC} from 'react';
-import {KeyOfValueWithType} from 'tslang';
+import {Dict, KeyOfValueWithType} from 'tslang';
 
 import {
   AbstractChonComponent,
   ChonComponentTypeType,
-  ChonElementProps,
+  ChonElement,
 } from '../chon-component';
 
 export type ChonElementKeyType<
   TChonComponent extends AbstractChonComponent
 > = Exclude<
-  Extract<KeyOfValueWithType<TChonComponent, () => ReactNode>, string>,
+  Extract<KeyOfValueWithType<TChonComponent, ChonElement>, string>,
   'render'
 >;
 
+export type ChonElementPropsType<
+  TChonElement
+> = TChonElement extends ChonElement<infer TProps> ? TProps : never;
+
 export type ChonElementDictType<
   TChonComponent extends AbstractChonComponent
-> = {[K in ChonElementKeyType<TChonComponent>]: SFC<ChonElementProps>};
+> = {
+  [K in ChonElementKeyType<TChonComponent>]: SFC<
+    ChonElementPropsType<TChonComponent[K]>
+  >
+};
 
-export type ChonTypeComposer<TChonComponent extends AbstractChonComponent> = (
+export type ChonComponentComposer<
+  TChonComponent extends AbstractChonComponent
+> = (
   elements: ChonElementDictType<TChonComponent>,
   component: TChonComponent,
 ) => ReactNode;
@@ -26,7 +36,7 @@ export type ChonTypeComposer<TChonComponent extends AbstractChonComponent> = (
 export type ChonComponentComposerDict<
   TChonComponent extends AbstractChonComponent
 > = {
-  [TType in ChonComponentTypeType<TChonComponent>]: ChonTypeComposer<
+  [TType in ChonComponentTypeType<TChonComponent>]: ChonComponentComposer<
     Extract<TChonComponent, {props: {type?: TType}}>
   >
 };
@@ -43,9 +53,10 @@ export class ChonComposer<TChonComponent extends AbstractChonComponent> {
   ): ReactNode {
     let {type = this.defaultType} = component.props;
 
-    let composer = (this.componentComposerDict[
-      type as ChonComponentTypeType<TChonComponent>
-    ] as ChonTypeComposer<any>) as ChonTypeComposer<TChonComponent>;
+    let composer = ((this.componentComposerDict as Dict<any>) as Dict<
+      ChonComponentComposer<TChonComponent>
+    >)[type];
+
     return composer(elements, component);
   }
 
